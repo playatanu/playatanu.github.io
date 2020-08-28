@@ -35,10 +35,10 @@
  <form>
 
      <h3>Admin Login</h3>
-    <label for="user">User Id</label>
+    <label for="user">User Id : </label>
     <input type="password" id="user">
-<br>
-<label for="pswd">Enter Your Password</label>
+<br><br><br>
+<label for="pswd">Password : </label>
     <input type="password" id="pswd">
 <br><br><br>
     <input type="button" value="Let's Mariyana Web" onclick="checkPswd();" /><br><br>
@@ -58,7 +58,7 @@
 </script>
 <script type="text/javascript">
     function checkuser() {
-        var confirmuser = "2020";
+        var confirmuser = "year";
         var user = document.getElementById("user").value;
         if (user == confirmuser) {
              window.location="home.html";
