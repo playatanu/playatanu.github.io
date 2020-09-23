@@ -1,14 +1,3 @@
-/*
-  Theme Name: Rapid
-  Theme URL: https://bootstrapmade.com/rapid-multipurpose-bootstrap-business-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
-
 
 
 body {
@@ -312,7 +301,7 @@ h6 {
 }
 
 #intro .intro-info h2 span {
-  color: #1bb1dc;
+  color: #ff0000;
 }
 
 #intro .intro-info .btn-get-started,
@@ -327,13 +316,13 @@ h6 {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #1bb1dc;
+  background: #ff0000;
   color: #fff;
 }
 
 #intro .intro-info .btn-get-started:hover,
 #intro .intro-info .btn-services:hover {
-  background: #0a98c0;
+  background: #ff0000;
 }
 
 /*--------------------------------------------------------------
@@ -375,7 +364,7 @@ h6 {
 .main-nav a:hover,
 .main-nav .active > a,
 .main-nav li:hover > a {
-  color: #1bb1dc;
+  color: #ff0000;
   text-decoration: none;
 }
 
@@ -415,7 +404,7 @@ h6 {
 .main-nav .drop-down ul a:hover,
 .main-nav .drop-down ul .active > a,
 .main-nav .drop-down ul li:hover > a {
-  color: #1bb1dc;
+  color: #ff0000;
 }
 
 .main-nav .drop-down > a:after {
@@ -477,7 +466,7 @@ h6 {
 .mobile-nav a:hover,
 .mobile-nav .active > a,
 .mobile-nav li:hover > a {
-  color: #8dc2fa;
+  color: #ff0000;
   text-decoration: none;
 }
 
@@ -709,7 +698,7 @@ h6 {
 }
 
 #services .title a {
-  color: rgb(255, 255, 255)224, 198, 198);
+  color: rgb(255, 255, 255);
 }
 
 #services .box:hover .title a {
