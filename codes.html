@@ -69,7 +69,7 @@
   </header><!-- #header -->
 
  
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
  
 
 
@@ -77,6 +77,59 @@
     boddyyy input
   ============================-->
 
+   
+      
+
+
+  <h4>All Codes</h4>
+<div style="background: darkorange;"><b>
+
+  <ul style="color: rgb(255, 255, 255);"><b>
+    <li>Google Dinosaur Code <br>
+      
+    <input value="function jump() {
+      Runner.instance_.tRex.setDuck(!1),
+          Runner.instance_.tRex.jumping ||
+          Runner.instance_.tRex.ducking ||
+          (Runner.instance_.playSound(Runner.instance_.soundFx.BUTTON_PRESS),
+              Runner.instance_.tRex.startJump(Runner.instance_.currentSpeed))
+  
+  }
+  
+  
+  function duck() {
+      Runner.instance_.tRex.jumping ?
+          Runner.instance_.tRex.setSpeedDrop() : Runner.instance_.tRex.jumping ||
+          Runner.instance_.tRex.ducking || Runner.instance_.tRex.setDuck(!0)
+  
+  }
+  setInterval(function () 
+  
+  
+  
+  
+  
+  { Runner.instance_.horizon.obstacles.length > 0 && 
+      (   Runner.instance_.horizon.obstacles[0].xPos < 25 * 
+          Runner.instance_.currentSpeed - 
+          Runner.instance_.horizon.obstacles[0].width / 2 && 
+          Runner.instance_.horizon.obstacles[0].yPos > 75 && jump(), 
+          Runner.instance_.horizon.obstacles[0].xPos < 30 * 
+          Runner.instance_.currentSpeed - 
+          Runner.instance_.horizon.obstacles[0].width / 2 && 
+          Runner.instance_.horizon.obstacles[0].yPos <= 75 && duck()
+          
+      )
+      
+      }
+      
+      , 5);" ></li>
+    
+  </ul>
+</div>
+
+      </div>
+    </b></div>
 
 
 
@@ -98,8 +151,8 @@
                       <li><a href="https://playatanu.github.io/">Home</a></li>
                       <li><a href="games.html">Games</a>
                         <li><a href="apps.html">Apps</a>
-                        <li><a href="project.html">Projects</a></li>
-                         <li><a href="plans.html">Plans</a>
+                      <li><a href="project.html">Projects</a>
+                     <li><a href="codes.html">Codes</a></li>
                      <li><a href="download.html">Download</a>
                      <li><a href="#footer">Contact Us</a></li>
                     </ul>
