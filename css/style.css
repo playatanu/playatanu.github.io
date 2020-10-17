@@ -183,7 +183,7 @@ h6 {
 
 #header .logo h1 a,
 #header .logo h1 a:hover {
-  color: #535074;
+  color: #00cffd;
   text-decoration: none;
 }
 
@@ -774,13 +774,13 @@ h6 {
 }
 
 #call-to-action .cta-title {
-  color: #2b4146;
+  color: #00cffd;
   font-size: 28px;
   font-weight: 700;
 }
 
 #call-to-action .cta-text {
-  color: #2b4146;
+  color: #00cffd;
 }
 
 #call-to-action .cta-btn {
@@ -793,7 +793,7 @@ h6 {
   border-radius: 3px;
   transition: 0.5s;
   margin: 10px;
-  border: 3px solid #2b4146;
+  border: 3px solid #00cffd;
   color: ##2b4146;
 }
 
