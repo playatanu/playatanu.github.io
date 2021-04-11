@@ -1,5 +1,5 @@
 ### Hi there I am Atanu Debnath👋
-### UX/UI Designer | Android Developer 
+UX/UI Designer | Android Developer 
 
 
 - Android Development - Java 
