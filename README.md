@@ -5,7 +5,6 @@
 - Android Development - Java 
 - UX/UI Designe - Adobe XD - Adobe Photoshop
 
-**Languages and Tools:**  
 
 ### Languages and Tools:
 
