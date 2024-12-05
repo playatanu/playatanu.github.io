@@ -1,63 +1,197 @@
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atanu Debnath - Portfolio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+      }
+      nav {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      nav a {
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      section {
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      section h2 {
+        color: #333;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background: #333;
+        color: white;
+        margin-top: 20px;
+      }
+      .project,
+      .education-item,
+      .certification-item {
+        margin-bottom: 20px;
+      }
+      .project h3,
+      .education-item h3,
+      .certification-item h3 {
+        margin: 0;
+      }
+      .project p,
+      .education-item p,
+      .certification-item p {
+        margin: 5px 0;
+      }
+      .link-text {
+        text-decoration: none;
+        color: #333;
+      }
+      .resume-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      .resume-btn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Atanu :D</h1>
+      <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-<head>
-  <meta charset="utf-8">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hello! I'm Atanu Debnath, a computer science student interested in
+        AI/ML. My academic journey is focused on understanding how to build
+        intelligent systems that can analyze and interpret data. I'm passionate
+        about applying machine learning and deep learning techniques to solve
+        real-world challenges. I'm eager to contribute to innovative projects
+        and continue learning in this exciting technology area.
+      </p>
+      <a href="resume.pdf" download class="resume-btn">Download Resume</a>
+    </section>
 
-  <title>Atanu Debnath</title>
-
-  <meta name="Atanu Debnath" content="Portfolio">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="tailwind.config.js"></script>
-
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
-</head>
-
-<body class="h-screen w-screen">
-  <div class="flex flex-row w-full h-full relative">
-
-    <div class="h-full w-6/12 bg-primary"></div>
-    <div class="h-full w-6/12 bg-hero bg-cover backdrop-blur-md"></div>
-
-    <div class="h-full w-full flex flex-col justify-between absolute right-0 top-0 px-14 py-10">
-
-      <div class="w-full flex flex-row justify-between ">
-        <a href="/">
-          <div class="text-white font-bold text-2xl">AD</div>
-        </a>
-        <a href="/">
-          <div class="text-white font-semibold text-base">Resume</div>
-        </a>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <a
+          href="https://github.com/playatanu/re-omnitrix"
+          class="link-text"
+          target="_blank"
+          ><h3>Re-Omnitrix - Ben 10 Aliens Classifier</h3></a
+        >
+        <p>Windows application to classify Ben 10 aliens using Deep Learning</p>
       </div>
-
-      <div class="w-full flex flex-col justify-between px-20 space-y-1">
-        <div class="text-white font-medium text-2xl">Java Developer</div>
-        <div class="text-white font-semibold text-7xl drop-shadow-sm">Atanu Debnath</div>
-        <spen class="text-white text-base md:w-3/6 w-full">I am a Java developer fresher and I am well-versed in
-          Core Java, J2EE, Spring, Hibernate, and other Java technologies.
-          I am also familiar with databases such as MySQL, MongoDB. </spen>
+      <div class="project">
+        <a
+          href="https://playatanu.github.io/atanu-mlkit"
+          class="link-text"
+          target="_blank"
+          ><h3>Atanu MLKit</h3></a
+        >
+        <p>
+          Python package offering utility functions to simplify machine learning
+          workflows
+        </p>
       </div>
-
-      <div class="flex flex-col space-y-1">
-        <div class="text-white font-medium text-base">Follow me</div>
-        <div class="w-full flex flex-row text-white text-xl space-x-3">
-          <a href="https://instagram.com/playatanu"><i class="fa fa-instagram"></i></a>
-          <a href="https://github.com/playatanu"><i class="fa fa-github"></i></a>
-          <a href="https://linkedin.com/in/playatanu"><i class="fa fa-linkedin"></i></a>
-          <a href="https://twitter.com/playatanu"><i class="fa fa-twitter"></i></a>
-        </div>
+      <div class="project">
+        <a
+          href="https://github.com/playatanu/face-recognition-app"
+          class="link-text"
+          target="_blank"
+          ><h3>Face Recognizer Web App</h3></a
+        >
+        <p>Face Recognition web app using FaceNet.</p>
       </div>
-    </div>
+      <div class="project">
+        <a
+          href="https://github.com/playatanu/cards-classification-app"
+          class="link-text"
+          target="_blank"
+          ><h3>Cards Classifier Android App</h3></a
+        >
+        <p>Real-time card classifier android app using YOLO.</p>
+      </div>
+    </section>
 
-  </div>
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>MS in Computer Science</h3>
+        <p>University of Kalyani, 2025</p>
+      </div>
+      <div class="education-item">
+        <h3>BS in Computer Science</h3>
+        <p>Nabadwip Vidyasagar College, 2023</p>
+      </div>
+    </section>
 
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <div class="certification-item">
+        <h3>Deep Learning for Ecological Studies</h3>
+        <p>IIRS ISRO, Issued Nov 2024</p>
+      </div>
+      <div class="certification-item">
+        <h3>Getting Started with Deep Learning</h3>
+        <p>NVIDIA, Issued Aug 2024</p>
+      </div>
+    </section>
 
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: playatanu@gamil.com</p>
+      <p>
+        LinkedIn:
+        <a
+          href="https://linkedin.com/in/playatanu"
+          class="link-text"
+          target="_blank"
+          >@playatanu</a
+        >
+      </p>
+    </section>
 
-</body>
-
+    <footer>
+      <p>© 2024 Atanu :D. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
