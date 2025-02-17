@@ -12,25 +12,30 @@
         background-color: #f4f4f9;
         color: #333;
       }
+
       header {
         background-color: #333;
         color: white;
         padding: 1rem;
         text-align: center;
       }
+
       header h1 {
         margin: 0;
       }
+
       nav {
         text-align: center;
         margin-top: 1rem;
       }
+
       nav a {
         text-decoration: none;
         color: white;
         margin: 0 15px;
         font-weight: bold;
       }
+
       section {
         padding: 20px;
         margin: 20px auto;
@@ -39,9 +44,11 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
       }
+
       section h2 {
         color: #333;
       }
+
       footer {
         text-align: center;
         padding: 1rem;
@@ -49,28 +56,33 @@
         color: white;
         margin-top: 20px;
       }
+
       .project,
       .education-item,
       .certification-item {
         margin-bottom: 20px;
       }
+
       .project h3,
       .education-item h3,
       .certification-item h3 {
         margin: 0;
       }
+
       .project p,
       .education-item p,
       .certification-item p {
         margin: 5px 0;
       }
+
       .link-text {
         text-decoration: none;
         color: #333;
       }
+
       .resume-btn {
         display: inline-block;
-        margin-top: 20px;
+        margin-top: 10px;
         padding: 10px 20px;
         background-color: #333;
         color: white;
@@ -79,34 +91,42 @@
         border-radius: 5px;
         transition: background-color 0.3s;
       }
+
       .resume-btn:hover {
         background-color: #555;
       }
     </style>
   </head>
+
   <body>
     <header>
-      <h1>Atanu :D</h1>
+      <h1>Atanu Debnath</h1>
       <nav>
         <a href="#about">About Me</a>
+        <a href="Atanu_Debnath_Resume.pdf" target="_blank">Resume</a>
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contact">Contact</a>
+        <!-- <a href="#certifications">Certifications</a> -->
+        <!-- <a href="#contact">Contact</a> -->
       </nav>
     </header>
 
     <section id="about">
       <h2>About Me</h2>
       <p>
-        Hello! I'm Atanu Debnath, a computer science student interested in
-        AI/ML. My academic journey is focused on understanding how to build
-        intelligent systems that can analyze and interpret data. I'm passionate
-        about applying machine learning and deep learning techniques to solve
-        real-world challenges. I'm eager to contribute to innovative projects
-        and continue learning in this exciting technology area.
+        Hi there! I’m Atanu Debnath, a computer science student interested in
+        artificial intelligence. My academic journey focuses on learning to
+        build intelligent systems that can analyze and interpret visual data. I
+        am passionate about applying deep learning techniques, particularly in
+        the field of computer vision.
+
+        <br /><br />
+        <a href="mailto:playatanu@gamil.com" class="link-text" target="_top"
+          >Email: playatanu@gamil.com</a
+        >
       </p>
-      <a href="Atanu_Debanth_Resume.pdf" download class="resume-btn"
+
+      <a href="Atanu_Debnath_Resume.pdf" download class="resume-btn"
         >Download Resume</a
       >
     </section>
@@ -114,59 +134,205 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="project">
-        <a
-          href="https://github.com/playatanu/re-omnitrix"
-          class="link-text"
-          target="_blank"
-          ><h3>Re-Omnitrix - Ben 10 Aliens Classifier</h3></a
-        >
-        <p>Windows application to classify Ben 10 aliens using Deep Learning</p>
+        <h3>
+          Image Similarity Search (ResNet50, FAISS, SQLite)
+          <a
+            href="https://github.com/playatanu/similarity-search"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+
+          <a
+            href="https://youtu.be/DWbKI3PEZNs?si=7EcLrH-cwWlWIWQa"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed a deep learning-powered image search system using ResNet50
+            (pre-trained on ImageNet) for feature extraction and FAISS (Facebook
+            AI Similarity Search) for nearest searches across large-scale image
+            datasets.
+          </li>
+          <li>
+            Integrated SQLite to store image metadata (e.g., file paths,) and
+            link them to FAISS indices.
+          </li>
+        </ul>
       </div>
       <div class="project">
-        <a
-          href="https://playatanu.github.io/atanu-mlkit"
-          class="link-text"
-          target="_blank"
-          ><h3>Atanu MLKit</h3></a
-        >
-        <p>
-          Python package offering utility functions to simplify machine learning
-          workflows
-        </p>
+        <h3>
+          Virtual Hair Colour Try on System (U-Net, Flask, Docker)
+          <a
+            href="https://github.com/playatanu/hair-color-try-on"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+          <a
+            href="https://youtu.be/sNUbNRr4ztg?si=mpaRw_73p_MHooXA"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+          <a
+            href="https://hair-colour-82219561125.asia-south1.run.app/"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed a deep learning-based virtual hair colour try-on system
+            using U-Net for precise hair segmentation and realistic colour
+            transformation.
+          </li>
+          <li>
+            Built a web application using Flask, enabling a user-friendly hair
+            colour visualization experience.
+          </li>
+          <li>
+            Deployed the application using Docker on Google Cloud to ensure
+            scalability, reliability, and seamless accessibility across
+            platforms.
+          </li>
+        </ul>
       </div>
       <div class="project">
-        <a
-          href="https://github.com/playatanu/face-recognition-app"
-          class="link-text"
-          target="_blank"
-          ><h3>Face Recognizer Web App</h3></a
-        >
-        <p>Face Recognition web app using FaceNet.</p>
+        <h3>
+          Blood Cell Detection (Faster R-CNN)
+          <a
+            href="https://github.com/playatanu/blood-cell-detection"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed a blood cell detection system using Faster R-CNN for from
+            microscopic images.
+          </li>
+          <li>
+            Accurately identified and classified Red Blood Cells (RBC), White
+            Blood Cells (WBC), and Platelets for medical analysis.
+          </li>
+        </ul>
       </div>
       <div class="project">
-        <a
-          href="https://github.com/playatanu/cards-classification-app"
-          class="link-text"
-          target="_blank"
-          ><h3>Cards Classifier Android App</h3></a
-        >
-        <p>Real-time card classifier android app using YOLO.</p>
+        <h3>
+          Smart Parking System (YOLO, OCR)
+          <a
+            href="https://github.com/playatanu/smart-car-parking"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+
+          <a
+            href="https://youtu.be/FyBBYTRnlsc?si=LGyUwv4u5-Oz0T74"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed a Smart Parking System for real-time vehicle detection,
+            tracking, and monitoring.
+          </li>
+          <li>
+            Implemented object tracking to uniquely identify vehicles and
+            prevent duplicate counts.
+          </li>
+          <li>
+            Integrated number plate detection using YOLO and OCR to extract and
+            store license plate details along with timestamps.
+          </li>
+        </ul>
+      </div>
+      <div class="project">
+        <h3>
+          Android Based Object Detection System (Flutter, YOLO)
+          <a
+            href="https://github.com/playatanu/object-detection-app"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+
+          <a
+            href="https://youtu.be/nUj9VhqMpEA?si=5YGxTDw7Faim4RWZ"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed an object detection system for visually impaired users
+            using Flutter and YOLO.
+          </li>
+          <li>
+            Implemented multiple object detection models, including currency
+            detection, and road obstacle detection with TTS (Text to Speech)
+            voice-based alerts to provide object identification feedback.
+          </li>
+        </ul>
+      </div>
+      <div class="project">
+        <h3>
+          Face Recognition System (FaceNet)
+          <a
+            href="https://github.com/playatanu/face-recognition-app"
+            class="link-text bold"
+            target="_blank"
+            >[Github]
+          </a>
+
+          <a
+            href="https://youtu.be/ay6WTBdphlc?si=RpjOypM44tKzHD43"
+            class="link-text bold"
+            target="_blank"
+            >[YouTube]
+          </a>
+        </h3>
+
+        <ul>
+          <li>
+            Developed a Face Recognition System using FaceNet for accurate and
+            efficient face identification.
+          </li>
+          <li>
+            Designed an interactive, user-friendly web application with
+            Streamlit.
+          </li>
+        </ul>
       </div>
     </section>
 
     <section id="education">
       <h2>Education</h2>
       <div class="education-item">
-        <h3>MS in Computer Science</h3>
+        <h3>MSc in Computer Science</h3>
         <p>University of Kalyani, 2025</p>
       </div>
       <div class="education-item">
-        <h3>BS in Computer Science</h3>
-        <p>Nabadwip Vidyasagar College, 2023</p>
+        <h3>BSc in Computer Science</h3>
+        <p>University of Kalyani, Nabadwip Vidyasagar College, 2023</p>
       </div>
     </section>
 
-    <section id="certifications">
+    <!-- <section id="certifications">
       <h2>Certifications</h2>
       <div class="certification-item">
         <h3>Deep Learning for Ecological Studies</h3>
@@ -176,12 +342,16 @@
         <h3>Getting Started with Deep Learning</h3>
         <p>NVIDIA, Issued Aug 2024</p>
       </div>
-    </section>
+    </section> -->
 
-    <section id="contact">
+    <!-- <section id="contact">
       <h2>Contact Me</h2>
-      <p>Email: playatanu@gamil.com</p>
       <p>
+        Email:
+        <a href="mailto:playatanu@gamil.com" class="link-text" target="_top"
+          >playatanu@gamil.com</a
+        >
+
         LinkedIn:
         <a
           href="https://linkedin.com/in/playatanu"
@@ -189,11 +359,16 @@
           target="_blank"
           >@playatanu</a
         >
+
+        GitHub:
+        <a href="https://github.com/playatanu" class="link-text" target="_blank"
+          >@playatanu</a
+        >
       </p>
-    </section>
+    </section> -->
 
     <footer>
-      <p>© 2024 Atanu :D. All rights reserved.</p>
+      <p>© 2024 Atanu. All rights reserved.</p>
     </footer>
   </body>
 </html>
