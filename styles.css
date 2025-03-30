@@ -294,7 +294,7 @@ footer {
 }
 
 /* Responsive Styles */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .hero .container,
   .about-content {
     margin-top: 0px;
@@ -314,7 +314,7 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .nav-links {
     position: fixed;
     top: 80px;
