@@ -9,7 +9,7 @@ const about = {
   name: 'Atanu Debnath',
   role: 'Computer Vision Engineer',
   description:
-    'Hi there! I’m Atanu Debnath, a computer science student interested in artificial intelligence. My academic journey focuses on learning to build intelligent systems that can analyze and interpret visual data. I am passionate about applying deep learning techniques, particularly in the field of computer vision.',
+    'Hi there! I’m a computer science student interested in artificial intelligence. My academic journey focuses on learning to build intelligent systems that can analyze and interpret visual data. I am passionate about applying deep learning techniques, particularly in the field of computer vision.',
   resume: 'Atanu_Debnath_Resume.pdf',
   social: {
     linkedin: 'https://linkedin.com/in/playatanu/',
@@ -25,7 +25,7 @@ const projects = [
     description:
       'Image search system using ResNet50 for feature extraction, FAISS for fast search, and SQLite for metadata storage.',
     stack: ['ResNet50', 'FAISS', 'SQLite'],
-    sourceCode: 'https://github.com',
+    sourceCode: 'https://github.com/playatanu/similarity-search',
     youtubeVideo: 'https://youtu.be/DWbKI3PEZNs',
   },
   {
@@ -42,8 +42,7 @@ const projects = [
     description:
       'A Faster R-CNN-based system for detecting and classifying blood cells (RBC, WBC, Platelets) in microscopic images.',
     stack: ['Faster R-CNN'],
-    sourceCode: 'https://github.com',
-    youtubeVideo: 'https://github.com',
+    sourceCode: 'https://github.com/playatanu/blood-cell-detection',
   },
 
   {
