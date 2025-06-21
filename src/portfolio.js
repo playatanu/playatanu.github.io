@@ -9,7 +9,7 @@ const about = {
   name: 'Atanu Debnath',
   role: 'AI Engineer',
   description:
-    'Hi there! I’m a computer science student interested in artificial intelligence. My academic journey focuses on learning to build intelligent systems that can analyze and interpret visual data. I am passionate about applying deep learning techniques, particularly in the field of computer vision.',
+    'Hi there! I’m an AI Engineer specializing in computer vision and deep learning. I build intelligent systems that can analyze and interpret visual data. I’m passionate about applying advanced AI techniques to solve real-world challenges, especially in the field of computer vision and edge AI.',
   resume: 'Atanu_Debnath_Resume.pdf',
   social: {
     linkedin: 'https://linkedin.com/in/playatanu/',
@@ -20,6 +20,29 @@ const about = {
 const projects = [
   // projects can be added an removed
   // if there are no projects, Projects section won't show up
+  {
+    name: 'Smart Mirror (upcoming)',
+    description:
+      'An AI-powered smart mirror that displays real-time info like weather, time, and news, with voice commands and face recognition using edge devices.',
+    stack: ['upcoming 2025-26'],
+    // sourceCode: 'https://github.com/playatanu/smart-mirror',
+  },
+  {
+    name: 'FindIt (upcoming)',
+    description:
+      'An AI-powered tool that searches videos using text prompts and returns matching frames with timestamps.',
+    stack: ['upcoming 2025'],
+    // sourceCode: 'https://github.com/playatanu/FindIt',
+  },
+  {
+    name: 'VISRP03 (ongoing)',
+    description:
+      'VISRP03 is a portable, AI-powered assistive device designed to enhance the quality of life for visually impaired individuals by providing real-time auditory information about their surroundings.',
+    stack: ['MobileNetV3', 'Tesseract'],
+    sourceCode: 'https://github.com/playatanu/VISRP03',
+    youtubeVideo:
+      'https://www.youtube.com/playlist?list=PLrxuvJ-Nitvl1U1ICqYqemrQF9pWbjMcT',
+  },
   {
     name: 'Image Similarity Search',
     description:
