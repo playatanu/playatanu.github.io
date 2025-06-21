@@ -7,7 +7,7 @@ const header = {
 const about = {
   // all the properties are optional - can be left empty or deleted
   name: 'Atanu Debnath',
-  role: 'Computer Vision Engineer',
+  role: 'AI Engineer',
   description:
     'Hi there! I’m a computer science student interested in artificial intelligence. My academic journey focuses on learning to build intelligent systems that can analyze and interpret visual data. I am passionate about applying deep learning techniques, particularly in the field of computer vision.',
   resume: 'Atanu_Debnath_Resume.pdf',
