@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atanu Debnath — Vision AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090909;
+  --bg-surface: #111111;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --text-primary: #f0ede8;
+  --text-secondary: #888780;
+  --text-muted: #444441;
+  --accent: #5DCAA5;
+  --accent-dim: rgba(93,202,165,0.1);
+  --accent-border: rgba(93,202,165,0.3);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'Syne',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+/* CURSOR */
+.cursor{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity 0.2s;}
+.cursor-ring{position:fixed;width:28px;height:28px;border:1px solid var(--accent-border);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;border-bottom:1px solid transparent;transition:background 0.3s,border-color 0.3s;}
+nav.scrolled{background:rgba(9,9,9,0.94);backdrop-filter:blur(16px);border-color:var(--border);}
+.nav-logo{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.05em;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text-primary);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 5rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(93,202,165,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 80%,rgba(93,202,165,0.04) 0%,transparent 60%);}
+.scan-lines{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px);}
+.vision-grid{position:absolute;top:10%;right:6%;width:300px;height:300px;opacity:0.2;z-index:1;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;}
+.vg-cell{aspect-ratio:1;border-radius:2px;animation:vgpulse 4s ease-in-out infinite;}
+@keyframes vgpulse{0%,100%{opacity:0.1}50%{opacity:1}}
+.hero-label{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;z-index:2;position:relative;display:flex;align-items:center;gap:10px;}
+.hero-label::before{content:'';width:32px;height:1px;background:var(--accent);}
+h1.hero-name{font-size:clamp(3.5rem,8vw,8rem);font-weight:800;line-height:0.95;letter-spacing:-0.03em;position:relative;z-index:2;margin-bottom:0.75rem;}
+h1.hero-name span{color:var(--accent);}
+.hero-role{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;color:var(--text-secondary);position:relative;z-index:2;margin-bottom:2rem;}
+.hero-desc{max-width:480px;font-size:15px;line-height:1.75;color:var(--text-secondary);position:relative;z-index:2;margin-bottom:2.5rem;}
+.hero-actions{display:flex;gap:1rem;align-items:center;position:relative;z-index:2;}
+.btn-primary{padding:0.75rem 1.75rem;background:var(--accent);color:#04342C;border:none;border-radius:2px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-weight:500;transition:opacity 0.2s,transform 0.15s;display:inline-block;}
+.btn-primary:hover{opacity:0.85;transform:translateY(-1px);}
+.btn-ghost{padding:0.75rem 1.75rem;background:transparent;border:1px solid var(--border-hover);border-radius:2px;color:var(--text-secondary);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:border-color 0.2s,color 0.2s,transform 0.15s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+.hero-stats{position:absolute;bottom:5rem;right:4rem;display:flex;flex-direction:column;gap:1.5rem;z-index:2;}
+.stat{text-align:right;}
+.stat-num{font-family:'DM Mono',monospace;font-size:2rem;font-weight:300;color:var(--text-primary);display:block;}
+.stat-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;opacity:0.4;}
+.scroll-hint span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-secondary);}
+.scroll-line{width:1px;height:36px;background:var(--text-muted);animation:scrolldown 1.8s ease-in-out infinite;}
+@keyframes scrolldown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* SECTIONS */
+section{padding:8rem 4rem;}
+.section-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:4rem;}
+.section-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;}
+.section-title{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.02em;}
+.section-line{flex:1;height:1px;background:var(--border);}
+
+/* ABOUT */
+#about{background:var(--bg-surface);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{font-size:15px;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem;}
+.about-text p strong{color:var(--text-primary);font-weight:500;}
+.skills-block{display:flex;flex-direction:column;gap:2rem;}
+.skill-group-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-tag{padding:5px 12px;border:1px solid var(--border);border-radius:2px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--text-secondary);background:transparent;transition:border-color 0.2s,color 0.2s,background 0.2s;cursor:default;}
+.skill-tag:hover{border-color:var(--accent-border);color:var(--accent);background:var(--accent-dim);}
+
+/* TIMELINE */
+#experience{background:var(--bg);}
+#education{background:var(--bg-surface);}
+.timeline{display:flex;flex-direction:column;}
+.timeline-item{display:grid;grid-template-columns:190px 24px 1fr;padding-bottom:3rem;}
+.timeline-item:last-child{padding-bottom:0;}
+.tl-left{text-align:right;padding-right:1.5rem;padding-top:3px;}
+.tl-date{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.07em;color:var(--text-muted);display:block;margin-bottom:5px;}
+.tl-org{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.04em;}
+.tl-spine{display:flex;flex-direction:column;align-items:center;}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px;box-shadow:0 0 0 3px rgba(93,202,165,0.15);}
+.tl-line{width:1px;flex:1;margin-top:6px;background:linear-gradient(to bottom,var(--accent-border),transparent);}
+.timeline-item:last-child .tl-line{display:none;}
+.tl-right{padding-left:1.5rem;}
+.tl-role{font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:0.4rem;}
+.tl-desc{font-size:13px;line-height:1.7;color:var(--text-secondary);margin-bottom:0.85rem;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tl-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.06em;padding:3px 9px;border:1px solid var(--border);border-radius:2px;color:var(--text-muted);}
+.edu-badge{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--accent);border:1px solid var(--accent-border);background:var(--accent-dim);padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:0.85rem;}
+.coursework-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;margin-top:0.75rem;}
+
+/* CONTACT */
+#contact{background:var(--bg);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;}
+.contact-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.contact-heading{font-size:clamp(2rem,5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1;margin-bottom:1.25rem;}
+.contact-sub{font-size:15px;color:var(--text-secondary);max-width:400px;margin-bottom:3rem;}
+.contact-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+
+/* FOOTER */
+footer{padding:2rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--bg);}
+footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:0.06em;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.25rem 2rem;}
+  section{padding:5rem 2rem;}
+  #hero{padding:0 2rem 4rem;}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .hero-stats{display:none;}
+  .vision-grid{width:160px;height:160px;opacity:0.1;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  .timeline-item{display:flex;flex-direction:column;padding-bottom:2.5rem;}
+  .tl-left{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;text-align:left;padding-right:0;padding-bottom:0.5rem;order:1;}
+  .tl-left .tl-date{display:inline;margin-bottom:0;}
+  .tl-spine{display:none;}
+  .tl-right{padding-left:1rem;border-left:2px solid var(--accent-border);margin-left:4px;order:2;}
+  .timeline-item:last-child{padding-bottom:0;}
+}
+@media(max-width:540px){
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">// Atanu.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="scan-lines"></div>
+  <div class="vision-grid" id="visionGrid"></div>
+
+  <div class="hero-label">AI Engineer</div>
+
+  <h1 class="hero-name">
+    Atanu<br><span>Debnath.</span>
+  </h1>
+
+  <p class="hero-role">// Vision AI · Deep Learning · Robotics</p>
+
+  <p class="hero-desc">
+    Building intelligent systems that see and understand the world —
+    from real-time object detection to deep learning perception pipelines.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+    <a href="#about" class="btn-ghost">About Me</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">2yrs+</span>
+      <span class="stat-label">Experience</span>
+    </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>Computer Vision Engineer</strong> specializing in deep learning-based perception systems. I design and deploy models that solve real-world visual understanding problems — from autonomous systems to industrial inspection.</p>
+      <p>My work sits at the intersection of <strong>research and production</strong> — taking ideas from paper to deployed inference pipeline. I care deeply about model efficiency, interpretability, and measurable impact.</p>
+      <p>Currently open to full-time roles and research collaborations. <span style="color:var(--accent)">→ Based in Kolkata, India.</span></p>
+    </div>
+    <div class="skills-block">
+      <div>
+        <div class="skill-group-label">Vision AI & Deep Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Image Classification</span>
+          <span class="skill-tag">Object Detection</span>
+          <span class="skill-tag">Image Segmentation</span>
+          <span class="skill-tag">Pose Estimation</span>
+          <span class="skill-tag">OCR</span>
+          <span class="skill-tag">3D Vision</span>
+          <span class="skill-tag">Video Analysis</span>
+          <span class="skill-tag">Anomaly Detection</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Frameworks & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">ONNX</span>
+          <span class="skill-tag">TF Lite</span>
+          <span class="skill-tag">OpenVINO</span>
+          <span class="skill-tag">TensorRT</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">VS Code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-left">
+        <span class="tl-date">March 2025 – Present</span>
+        <span class="tl-org">swatah.ai</span>
+      </div>
+      <div class="tl-spine">
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-role">Computer Vision Engineer</div>
+        <p class="tl-desc">Delivered on-site consulting to analyze client challenges and design custom computer vision solutions. Built end-to-end AI pipelines for quality inspection and real-time safety surveillance (3+ deployments). Optimized models for edge devices using ONNX, OpenVINO, and TFLite — reducing latency by 35%. Improved defect detection accuracy from 82% to 94% through model and data tuning. Developed technical demos to showcase AI vision capabilities to clients and stakeholders.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span>
+          <span class="tl-tag">PyTorch</span>
+          <span class="tl-tag">ONNX</span>
+          <span class="tl-tag">OpenVINO</span>
+          <span class="tl-tag">Object Detection</span>
+          <span class="tl-tag">Anomaly Detection</span>
+          <span class="tl-tag">Edge Deployment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-left">
+        <span class="tl-date">Oct 2023 – Jun 2025</span>
+        <span class="tl-org">University of Kalyani</span>
+      </div>
+      <div class="tl-spine">
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-right">
+        <div class="tl-role">MSc in Computer Science</div>
+        <!-- <span class="edu-badge">CGPA 8.27 / 10</span> -->
+        <div class="coursework-label">Relevant Coursework</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Machine Learning</span>
+          <span class="tl-tag">Deep Learning</span>
+          <span class="tl-tag">Digital Image Processing</span>
+          <span class="tl-tag">Statistics</span>
+          <span class="tl-tag">Data Analytics</span>
+          <span class="tl-tag">Data Structures & Algorithms</span>
+          <span class="tl-tag">OOP</span>
+          <span class="tl-tag">DBMS</span>
+          <span class="tl-tag">Operating System</span>
+          <span class="tl-tag">Computer Networks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="contact-eyebrow">// Let's build something</p>
+  <h2 class="contact-heading">Get in<br><span style="color:var(--accent)">touch.</span></h2>
+  <p class="contact-sub">Open to roles in computer vision, deep learning research, and applied AI. Let's talk.</p>
+  <div class="contact-links">
+    <a href="mailto:playatanu@gmail.com" class="btn-primary">playatanu@gmail.com</a>
+    <a href="https://github.com/playatanu" class="btn-ghost" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/playatanu" class="btn-ghost" target="_blank">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 — Atanu Debnath · Vision AI Engineer</p>
+  <p>Kolkata, India</p>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function anim() {
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(anim);
+})();
+document.querySelectorAll('a, button, .skill-tag').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width = '44px'; ring.style.height = '44px'; cursor.style.opacity = '0'; });
+  el.addEventListener('mouseleave', () => { ring.style.width = '28px'; ring.style.height = '28px'; cursor.style.opacity = '1'; });
+});
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
+});
+const vg = document.getElementById('visionGrid');
+const cols = ['#5DCAA5', '#1D9E75', '#085041', '#111', '#0f0f0f', '#5DCAA5', '#5DCAA5'];
+for (let i = 0; i < 25; i++) {
+  const c = document.createElement('div');
+  c.className = 'vg-cell';
+  c.style.background = cols[Math.floor(Math.random() * cols.length)];
+  c.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+  c.style.animationDuration = (2.5 + Math.random() * 3).toFixed(2) + 's';
+  vg.appendChild(c);
+}
+</script>
+</body>
+</html>
