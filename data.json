@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "title": "Atanu Debnath (playatanu)",
+    "description": "Atanu Debnath (playatanu) is an AI Engineer passionate about building intelligent systems that solve real-world problems. His work focuses on computer vision, deep learning, real-time inference, and Edge AI, with a strong interest in developing efficient, reliable, and practical AI solutions."
+  },
+
+  "name": "Atanu Debnath",
+  "designation": "Computer Vision Engineer | Edge AI | Deep Learning",
+  "resumeUrl": "assets/resume.pdf",
+  "email": "playatanu@gmail.com",
+
+  "experience": [
+    {
+      "company": "Emdee Digitronics",
+      "designation": "Computer Vision Engineer",
+      "date": "May 2026 - Present",
+      "description": "- Working on **Multi IP / CCTV camera**, video analytics for real time monitoring, detection, and video processing. \n- Developing and deploying computer vision applications on **NVIDIA Jetson** for real time edge inference."
+    },
+    {
+      "company": "Swatah",
+      "designation": "Computer Vision Engineer",
+      "date": "Mar 2025 - April 2026",
+      "description": "- Worked on the complete computer vision pipeline, including data collection, model training, optimization, and deployment. \n- Optimized and deployed models using **ONNX Runtime** and **RKNN** on **Rockchip** and **Radxa** edge devices for efficient, low latency inference."
+    }
+  ],
+
+  "skills": [
+    "Python",
+    "C++",
+    "OpenCV",
+    "PyTorch",
+    "ONNX",
+    "TensorRT",
+    "TFLite / LiteRT",
+    "OpenVINO",
+    "Jetson",
+    "Deep Learning",
+    "Image Processing",
+    "Image Classification",
+    "Object Detection",
+    "Image Segmentation",
+    "Pose Estimation"
+  ],
+
+  "projects": [
+    {
+      "name": "simpleVision - Computer Vision Toolkit",
+      "description": "SimpleVision is a lightweight computer vision toolkit built for fast real-time detection pipelines.",
+      "tags": ["Python", "PyAV"],
+      "github": "https://github.com/playatanu/simpleVision"
+    },
+    {
+      "cover": "https://github.com/playatanu/NNRT/blob/main/docs/assets/nnrt_banner.jpg?raw=true",
+      "name": "NNRT - Deep Learning Framework",
+      "description": "NNRT is a Deep Learning framework built from scratch in Python.",
+      "tags": ["Python", "Deep Learning"],
+      "github": "https://github.com/playatanu/NNRT"
+    },
+    {
+      "cover": "https://raw.githubusercontent.com/visionai4bharat/swatahVision/main/assets/cover.png",
+      "name": "swatahvision - Computer Vision Library",
+      "description": "swatahVision is a computer vision library that simplifies model loading, inference, and visualization for image classification and object detection.",
+      "tags": ["Python", "OpenCV"],
+      "github": "https://github.com/VisionAI4Bharat/swatahVision"
+    },
+    {
+      "cover": "https://github.com/playatanu/workout-vision/raw/main/assets/squat.gif",
+      "name": "Real Time Squat Counter",
+      "description": "Real time workout tracking system, that detects multiple exercises, counts reps, analyzes posture, and provides live visual feedback optimized for edge devices.",
+      "tags": ["Python", "Pose Estimation"],
+      "github": "https://github.com/playatanu/workout-vision",
+      "youtube": "https://youtu.be/0Q-pjTRqR1M?si=uZ8ueowGLxpgwYCf"
+    },
+    {
+      "cover": "https://github.com/playatanu/Movenet/raw/main/assets/fall_detection.gif",
+      "name": "Real Time Fall Detection",
+      "description": "A real time fall detection system that detects sudden falls, analyzes body posture and movement, distinguishes falls from normal activities, and provides instant visual and audio alerts, optimized for low-latency edge-device deployment.",
+      "tags": ["Python", "Pose Estimation"],
+      "github": "https://github.com/playatanu/Movenet",
+      "youtube": "https://youtu.be/oxNlQq6c0i4?si=qaCPMix5N0omhH68"
+    },
+    {
+      "cover": "https://github.com/playatanu/depth-estimation-encoder-decoder/raw/main/assets/depth.gif",
+      "name": "Depth Estimation using Custom CNN (Encoder-Decoder)",
+      "description": "A custom Convolutional Neural Network (CNN) designed for monocular depth estimation using an encoder–decoder architecture. ",
+      "tags": ["CNN", "Encoder Decoder", "Depth Estimation"],
+      "github": "https://github.com/playatanu/depth-estimation-encoder-decoder",
+      "youtube": "https://youtu.be/zqHV3CYxV8c?si=fXuOVe_iYKoU5Typ"
+
+    },
+    {
+      "name": "VIS-RPB3",
+      "tags": ["Raspberry PI", "OpenCV", "Image Detection"],
+      "description": "VIS-RPB3 is a portable, AI-powered assistive device designed to enhance the quality of life for visually impaired individuals by providing real-time auditory information about their surroundings.",
+      "github": "https://github.com/playatanu/VIS-RPB3"
+    },
+    {
+      "cover": "https://github.com/playatanu/object-detection-app/raw/main/screenshot/001.png",
+      "name": "Object Detection on Android (Flutter)",
+      "tags": ["YoloV8", "Object Detection", "Flutter"],
+      "description": "Object Detection on Android (Flutter) - A mobile application that detects and identifies objects in real time using the device camera with efficient on device processing.",
+      "github": "https://github.com/playatanu/object-detection-app",
+      "youtube": "https://youtu.be/nUj9VhqMpEA?si=9TY_zLWWNFXWGJUk"
+    },
+    {
+      "cover": "https://camo.githubusercontent.com/f815c48ef0fbee7c0da2e327edd397862422e2474c26325687391dba7b15f5c7/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f4457624b493350455a4e732f6d617872657364656661756c742e6a7067",
+      "name": "Image Similarity Search",
+      "tags": ["ResNet50", "FAISS", "Embedding"],
+      "description": "Similarity based image search system that enables efficient retrieval of visually similar images.",
+      "github": "https://github.com/playatanu/similarity-search",
+      "youtube": "https://youtu.be/DWbKI3PEZNs?si=zRJ_j1kAkaRUBK8D"
+    },
+    {
+      "cover": "https://github.com/playatanu/hair-color-try-on/raw/main/output/green.png",
+      "name": "Virtual Hair Colour Try-On System for Hair Makeovers",
+      "tags": ["U-Net", "Image Segmentation"],
+      "description": "Virtual Hair Colour Try-On System for Hair Makeovers is a deep learning-based application that allows users to experiment with different hair colors on their photos. ",
+      "github": "https://github.com/playatanu/hair-color-try-on",
+      "youtube": "https://youtu.be/sNUbNRr4ztg?si=-Y5DpEOqvB2tZL8X"
+    }
+  ],
+
+  "// articles": [
+    {
+      "cover": "Article Cover 1",
+      "title": "Article Title 1",
+      "description": "Article Description 1",
+      "link": "https://sample.com"
+    },
+    {
+      "cover": "Article Cover 2",
+      "title": "Article Title 2",
+      "description": "Article Description 2",
+      "link": "https://sample.com"
+    }
+  ],
+  "education": [
+    {
+      "institute": "Manipal University Jaipur",
+      "degree": "MBA in Information Systems Management",
+      "date": "Aug 2025 - July 2027"
+    },
+    {
+      "institute": "University of Kalyani",
+      "degree": "MSc in Computer Science",
+      "date": "Sep 2023 - July 2025"
+    },
+    {
+      "institute": "University of Kalyani",
+      "degree": "BSc in Computer Science",
+      "date": "Aug 2020 - Aug 2023"
+    }
+  ]
+}

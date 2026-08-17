@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atanu Debnath (playatanu)</title>
+  <meta name="description" id="meta-description" content="Atanu Debnath (playatanu) is an AI Engineer passionate about building intelligent systems that solve real-world problems. His work focuses on computer vision, deep learning, real-time inference, and Edge AI, with a strong interest in developing efficient, reliable, and practical AI solutions." />
+  <link rel="icon" id="favicon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="name" id="name">…</h1>
+        <p class="designation" id="designation"></p>
+        <div class="actions">
+          <a class="btn btn-primary" id="resume-btn" href="#" download>
+            Download Resume
+          </a>
+          <a class="btn btn-outline" id="mail-btn" href="#">
+            Mail Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="experience-section">
+      <h2 class="section-title">Experience</h2>
+      <div id="experience"></div>
+    </section>
+
+    <section id="skills-section">
+      <h2 class="section-title">Skills</h2>
+      <ul class="skills-list" id="skills"></ul>
+    </section>
+
+    <section id="projects-section">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid" id="projects"></div>
+      <div class="see-more-wrap">
+        <button class="btn btn-outline see-more-btn" id="projects-more" style="display:none"></button>
+      </div>
+    </section>
+
+    <section id="articles-section">
+      <h2 class="section-title">Articles</h2>
+      <div class="projects-grid" id="articles"></div>
+      <div class="see-more-wrap">
+        <button class="btn btn-outline see-more-btn" id="articles-more" style="display:none"></button>
+      </div>
+    </section>
+
+    <section id="education-section">
+      <h2 class="section-title">Education</h2>
+      <div id="education"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> <span id="footer-name"></span></p>
+    </div>
+  </footer>
+
+  <script>
+
+    const esc = (s) =>
+      String(s ?? "").replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+      );
+
+    // Inline formatting inside a line: **bold** -> <strong>bold</strong>.
+    // Runs on already-escaped text, so the ** markers are safe to match.
+    const inline = (t) => t.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+    // Rich text for description fields. In data.json:
+    //   "\n"         -> line break
+    //   "\n\n"       -> blank line between paragraphs
+    //   "- item"     -> bullet point (also accepts "* item")
+    //   "**bold**"   -> bold text
+    // Consecutive "- " lines are grouped into one bulleted list.
+    const formatText = (s) => {
+      const lines = esc(s).split(/\r?\n/);
+      const parts = [];
+      let text = [];
+      let list = [];
+      const flushText = () => { if (text.length) { parts.push(text.join("<br>")); text = []; } };
+      const flushList = () => {
+        if (list.length) { parts.push('<ul class="desc-list">' + list.join("") + "</ul>"); list = []; }
+      };
+      for (const line of lines) {
+        const m = line.match(/^\s*[-*]\s+(.*)$/);
+        if (m) { flushText(); list.push("<li>" + inline(m[1].trim()) + "</li>"); }
+        else { flushList(); text.push(inline(line)); }
+      }
+      flushText();
+      flushList();
+      return parts.join("");
+    };
+
+    async function render() {
+      let data;
+      try {
+        const res = await fetch("data.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(res.status + " " + res.statusText);
+        data = await res.json();
+      } catch (err) {
+        document.body.innerHTML =
+          '<div class="container" style="padding:60px 20px">' +
+          "<h1>Could not load data.json</h1>" +
+          "<p style='color:#9aa1b1'>" + esc(err.message) + "</p>" +
+          "<p style='color:#9aa1b1'>Open this page through a local server " +
+          "(e.g. <code>python3 -m http.server</code>), not by double-clicking the file.</p>" +
+          "</div>";
+        return;
+      }
+
+      // Meta / title
+      const meta = data.meta || {};
+      document.title = meta.title || (data.name ? data.name + " — Portfolio" : "Portfolio");
+      if (meta.description) {
+        document.getElementById("meta-description").setAttribute("content", meta.description);
+      }
+      // Favicon: meta.favicon can be an emoji ("🚀") or an image path/URL.
+      // If omitted, the default assets/favicon.svg (linked in <head>) is used.
+      if (meta.favicon) {
+        const link = document.getElementById("favicon");
+        const emoji = /\p{Extended_Pictographic}/u.test(meta.favicon);
+        if (emoji) {
+          const svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+            '<text y="52" font-size="52">' + esc(meta.favicon) + "</text></svg>";
+          link.setAttribute("type", "image/svg+xml");
+          link.setAttribute("href", "data:image/svg+xml," + encodeURIComponent(svg));
+        } else {
+          link.removeAttribute("type");
+          link.setAttribute("href", meta.favicon);
+        }
+      }
+
+      // Hero
+      document.getElementById("name").textContent = data.name || "";
+      document.getElementById("designation").textContent = data.designation || "";
+      document.getElementById("footer-name").textContent = data.name || "";
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const downloadIcon = 
+        '<svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />' +
+        '<polyline points="7 10 12 15 17 10" />' +
+        '<line x1="12" y1="15" x2="12" y2="3" />' +
+        '</svg>';
+
+      const mailIcon = 
+        '<svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />' +
+        '<polyline points="22,6 12,13 2,6" />' +
+        '</svg>';
+
+      const resumeBtn = document.getElementById("resume-btn");
+      if (data.resumeUrl) {
+        resumeBtn.href = data.resumeUrl;
+        resumeBtn.innerHTML = downloadIcon + ' Download Resume';
+      } else {
+        resumeBtn.style.display = "none";
+      }
+
+      const mailBtn = document.getElementById("mail-btn");
+      if (data.email) {
+        mailBtn.href = "mailto:" + data.email;
+        mailBtn.innerHTML = mailIcon + ' Mail Me';
+      } else {
+        mailBtn.style.display = "none";
+      }
+
+      document.getElementById("experience").innerHTML = (data.experience || [])
+        .map(
+          (e) =>
+            '<div class="exp-item">' +
+            '<div class="exp-head">' +
+            '<h3 class="exp-company">' + esc(e.company) + "</h3>" +
+            '<span class="exp-date">' + esc(e.date) + "</span>" +
+            "</div>" +
+            (e.designation ? '<p class="exp-role">' + esc(e.designation) + "</p>" : "") +
+            '<p class="exp-desc">' + formatText(e.description) + "</p>" +
+            "</div>"
+        )
+        .join("");
+
+      document.getElementById("skills").innerHTML = (data.skills || [])
+        .map((s) => "<li>" + esc(s) + "</li>")
+        .join("");
+
+      const githubIcon =
+        '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">' +
+        '<path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 ' +
+        "0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 " +
+        "1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 " +
+        "0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 " +
+        "3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.81 " +
+        '1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.57 22.29 24 17.79 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>';
+
+      const youtubeIcon =
+        '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">' +
+        '<path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.39.58A3 3 0 0 0 .5 6.2 ' +
+        "31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12C4.5 20.5 12 20.5 12 20.5s7.5 0 " +
+        '9.39-.58a3 3 0 0 0 2.11-2.12A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>';
+
+      // How many cards to show before the "See more" button appears.
+      const VISIBLE_LIMIT = 6;
+
+      // Cover image with graceful fallback: if the src is empty OR fails to
+      // load, a labelled placeholder is shown instead of a broken image.
+      const coverHTML = (name, cover) => {
+        const label = esc(name || "");
+        const placeholder =
+          '<div class="project-cover project-cover-ph"><span>' + (label || "No preview") + "</span></div>";
+        if (!cover) return placeholder;
+        return (
+          '<img class="project-cover" src="' + esc(cover) + '" alt="' + label + ' cover" loading="lazy" ' +
+          "onerror=\"this.style.display='none';this.nextElementSibling.style.display='flex'\" />" +
+          '<div class="project-cover project-cover-ph" style="display:none"><span>' +
+          (label || "No preview") + "</span></div>"
+        );
+      };
+
+      // Wire up a "See more / See less" toggle for a grid that has more than
+      // VISIBLE_LIMIT cards. Extra cards get .is-hidden; the button flips a
+      // .show-all class on the grid to reveal them.
+      const setupSeeMore = (gridId, btnId, total) => {
+        const btn = document.getElementById(btnId);
+        if (total <= VISIBLE_LIMIT) { btn.style.display = "none"; return; }
+        const grid = document.getElementById(gridId);
+        const hidden = total - VISIBLE_LIMIT;
+        const moreLabel = "See more (" + hidden + ")";
+        btn.style.display = "";
+        btn.textContent = moreLabel;
+        btn.addEventListener("click", () => {
+          const open = grid.classList.toggle("show-all");
+          btn.textContent = open ? "See less" : moreLabel;
+        });
+      };
+
+      const projectTags = (tags) =>
+        Array.isArray(tags) && tags.length
+          ? '<div class="project-tags">' +
+            tags.map((t) => '<span class="project-tag">' + esc(t) + "</span>").join("") +
+            "</div>"
+          : "";
+
+      const projectLinks = (p) => {
+        const links = [];
+        if (p.github)
+          links.push(
+            '<a class="project-link" href="' + esc(p.github) +
+            '" target="_blank" rel="noopener" aria-label="GitHub repository" title="GitHub">' +
+            githubIcon + "<span>Code</span></a>"
+          );
+        if (p.youtube)
+          links.push(
+            '<a class="project-link" href="' + esc(p.youtube) +
+            '" target="_blank" rel="noopener" aria-label="YouTube video" title="YouTube">' +
+            youtubeIcon + "<span>Video</span></a>"
+          );
+        return links.length ? '<div class="project-links">' + links.join("") + "</div>" : "";
+      };
+
+      const projects = data.projects || [];
+      document.getElementById("projects").innerHTML = projects
+        .map(
+          (p, i) =>
+            '<article class="project-card' + (i >= VISIBLE_LIMIT ? " is-hidden" : "") + '">' +
+            coverHTML(p.name, p.cover) +
+            '<div class="project-body">' +
+            '<h3 class="project-name">' + esc(p.name) + "</h3>" +
+            '<p class="project-desc">' + formatText(p.description) + "</p>" +
+            projectTags(p.tags) +
+            projectLinks(p) +
+            "</div>" +
+            "</article>"
+        )
+        .join("");
+      setupSeeMore("projects", "projects-more", projects.length);
+
+      // Articles (same card layout as projects)
+      const articlesSection = document.getElementById("articles-section");
+      const articles = data.articles || [];
+      if (articles.length) {
+        articlesSection.style.display = "";
+        document.getElementById("articles").innerHTML = articles
+          .map(
+            (a, i) =>
+              '<article class="project-card' + (i >= VISIBLE_LIMIT ? " is-hidden" : "") + '">' +
+              coverHTML(a.title, a.cover) +
+              '<div class="project-body">' +
+              '<h3 class="project-name">' + esc(a.title) + "</h3>" +
+              '<p class="project-desc">' + formatText(a.description) + "</p>" +
+              (a.link
+                ? '<div class="project-links">' +
+                  '<a class="project-link" href="' + esc(a.link) +
+                  '" target="_blank" rel="noopener">Read →</a>' +
+                  "</div>"
+                : "") +
+              "</div>" +
+              "</article>"
+          )
+          .join("");
+        setupSeeMore("articles", "articles-more", articles.length);
+      } else {
+        articlesSection.style.display = "none";
+        document.getElementById("articles-more").style.display = "none";
+      }
+
+      document.getElementById("education").innerHTML = (data.education || [])
+        .map(
+          (ed) =>
+            '<div class="edu-item">' +
+            '<div class="edu-main">' +
+            '<h3 class="edu-institute">' + esc(ed.institute) + "</h3>" +
+            (ed.degree ? '<p class="edu-degree">' + esc(ed.degree) + "</p>" : "") +
+            "</div>" +
+            '<span class="edu-date">' + esc(ed.date) + "</span>" +
+            "</div>"
+        )
+        .join("");
+    }
+
+    render();
+
+
+    // Ultra smooth white cursor trail
+    (function() {
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999';
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      
+      // Smooth interpolation
+      let currentX = 0;
+      let currentY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      const smoothness = 0.08; // Very smooth
+      
+      const trail = [];
+      const maxTrail = 25;
+      let lastAddX = 0;
+      let lastAddY = 0;
+      
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+      
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+      });
+      
+      document.addEventListener('mouseenter', (e) => {
+        currentX = e.clientX;
+        currentY = e.clientY;
+        targetX = e.clientX;
+        targetY = e.clientY;
+        lastAddX = e.clientX;
+        lastAddY = e.clientY;
+      });
+      
+      function draw() {
+        // Smooth interpolation
+        currentX += (targetX - currentX) * smoothness;
+        currentY += (targetY - currentY) * smoothness;
+        
+        // Add to trail with distance threshold
+        const dx = currentX - lastAddX;
+        const dy = currentY - lastAddY;
+        if (Math.sqrt(dx * dx + dy * dy) > 1) {
+          trail.push({ x: currentX, y: currentY });
+          lastAddX = currentX;
+          lastAddY = currentY;
+          if (trail.length > maxTrail) {
+            trail.shift();
+          }
+        }
+        
+        // Clear with slight fade for smoother appearance
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw trail
+        if (trail.length >= 2) {
+          for (let i = 0; i < trail.length - 1; i++) {
+            const p1 = trail[i];
+            const p2 = trail[i + 1];
+            const progress = i / (trail.length - 1);
+            
+            // Exponential fade
+            const alpha = Math.pow(1 - progress, 0.8) * 0.85;
+            const lineWidth = 1.5 + Math.pow(1 - progress, 0.5) * 3.5;
+            
+            // White glow line
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
+            ctx.shadowBlur = 20;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+            
+            // Soft outer glow
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.1)';
+            ctx.shadowBlur = 40;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.2})`;
+            ctx.lineWidth = lineWidth + 10;
+            ctx.stroke();
+          }
+        }
+        
+        // Cursor dot
+        ctx.shadowBlur = 0;
+        // Outer glow
+        const gradient = ctx.createRadialGradient(currentX, currentY, 0, currentX, currentY, 30);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+        gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 30, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Core white dot
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+        ctx.shadowBlur = 25;
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fill();
+        
+        // Bright center
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 1, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        
+        requestAnimationFrame(draw);
+      }
+      
+      draw();
+    })();
+  </script>
+</body>
+</html>
