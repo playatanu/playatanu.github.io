@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atanu Debnath (playatanu)</title>
-  <meta name="description" id="meta-description" content="Atanu Debnath (playatanu) is an AI Engineer passionate about building intelligent systems that solve real-world problems. His work focuses on computer vision, deep learning, real-time inference, and Edge AI, with a strong interest in developing efficient, reliable, and practical AI solutions." />
+  <meta name="description" id="meta-description"
+    content="Atanu Debnath (playatanu) is an AI Engineer passionate about building intelligent systems that solve real-world problems. His work focuses on computer vision, deep learning, real-time inference, and Edge AI, with a strong interest in developing efficient, reliable, and practical AI solutions." />
   <link rel="icon" id="favicon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <header class="hero">
@@ -148,14 +151,14 @@
       document.getElementById("footer-name").textContent = data.name || "";
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      const downloadIcon = 
+      const downloadIcon =
         '<svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
         '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />' +
         '<polyline points="7 10 12 15 17 10" />' +
         '<line x1="12" y1="15" x2="12" y2="3" />' +
         '</svg>';
 
-      const mailIcon = 
+      const mailIcon =
         '<svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
         '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />' +
         '<polyline points="22,6 12,13 2,6" />' +
@@ -248,8 +251,8 @@
       const projectTags = (tags) =>
         Array.isArray(tags) && tags.length
           ? '<div class="project-tags">' +
-            tags.map((t) => '<span class="project-tag">' + esc(t) + "</span>").join("") +
-            "</div>"
+          tags.map((t) => '<span class="project-tag">' + esc(t) + "</span>").join("") +
+          "</div>"
           : "";
 
       const projectLinks = (p) => {
@@ -301,9 +304,9 @@
               '<p class="project-desc">' + formatText(a.description) + "</p>" +
               (a.link
                 ? '<div class="project-links">' +
-                  '<a class="project-link" href="' + esc(a.link) +
-                  '" target="_blank" rel="noopener">Read →</a>' +
-                  "</div>"
+                '<a class="project-link" href="' + esc(a.link) +
+                '" target="_blank" rel="noopener">Read →</a>' +
+                "</div>"
                 : "") +
               "</div>" +
               "</article>"
@@ -332,42 +335,54 @@
     render();
 
 
-    // Ultra smooth white cursor trail
-    (function() {
+    // Ultra smooth white cursor trail (with mobile detection)
+    (function () {
+      // Check if device has a mouse/cursor
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      // Also check for touch support
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      // Disable on mobile devices
+      if (isMobile || hasTouch) {
+        console.log('Cursor trail disabled on mobile device');
+        return;
+      }
+
       const canvas = document.createElement('canvas');
       canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999';
       document.body.appendChild(canvas);
-      
+
       const ctx = canvas.getContext('2d');
       let width = window.innerWidth;
       let height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      
+
       // Smooth interpolation
       let currentX = 0;
       let currentY = 0;
       let targetX = 0;
       let targetY = 0;
       const smoothness = 0.08; // Very smooth
-      
+
       const trail = [];
       const maxTrail = 25;
       let lastAddX = 0;
       let lastAddY = 0;
-      
+
       window.addEventListener('resize', () => {
         width = window.innerWidth;
         height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
       });
-      
+
       document.addEventListener('mousemove', (e) => {
         targetX = e.clientX;
         targetY = e.clientY;
       });
-      
+
       document.addEventListener('mouseenter', (e) => {
         currentX = e.clientX;
         currentY = e.clientY;
@@ -376,12 +391,17 @@
         lastAddX = e.clientX;
         lastAddY = e.clientY;
       });
-      
+
+      // Hide cursor trail when mouse leaves the window
+      document.addEventListener('mouseleave', () => {
+        trail.length = 0;
+      });
+
       function draw() {
         // Smooth interpolation
         currentX += (targetX - currentX) * smoothness;
         currentY += (targetY - currentY) * smoothness;
-        
+
         // Add to trail with distance threshold
         const dx = currentX - lastAddX;
         const dy = currentY - lastAddY;
@@ -393,21 +413,21 @@
             trail.shift();
           }
         }
-        
+
         // Clear with slight fade for smoother appearance
         ctx.clearRect(0, 0, width, height);
-        
+
         // Draw trail
         if (trail.length >= 2) {
           for (let i = 0; i < trail.length - 1; i++) {
             const p1 = trail[i];
             const p2 = trail[i + 1];
             const progress = i / (trail.length - 1);
-            
+
             // Exponential fade
             const alpha = Math.pow(1 - progress, 0.8) * 0.85;
             const lineWidth = 1.5 + Math.pow(1 - progress, 0.5) * 3.5;
-            
+
             // White glow line
             ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
             ctx.shadowBlur = 20;
@@ -417,7 +437,7 @@
             ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.lineWidth = lineWidth;
             ctx.stroke();
-            
+
             // Soft outer glow
             ctx.shadowColor = 'rgba(255, 255, 255, 0.1)';
             ctx.shadowBlur = 40;
@@ -429,7 +449,7 @@
             ctx.stroke();
           }
         }
-        
+
         // Cursor dot
         ctx.shadowBlur = 0;
         // Outer glow
@@ -441,7 +461,7 @@
         ctx.arc(currentX, currentY, 30, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
-        
+
         // Core white dot
         ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
         ctx.shadowBlur = 25;
@@ -449,19 +469,21 @@
         ctx.arc(currentX, currentY, 2.5, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.fill();
-        
+
         // Bright center
         ctx.shadowBlur = 0;
         ctx.beginPath();
         ctx.arc(currentX, currentY, 1, 0, Math.PI * 2);
         ctx.fillStyle = '#ffffff';
         ctx.fill();
-        
+
         requestAnimationFrame(draw);
       }
-      
+
       draw();
     })();
+
   </script>
 </body>
+
 </html>
