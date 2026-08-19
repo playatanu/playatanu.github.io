@@ -6,6 +6,7 @@
 
   "name": "Atanu Debnath",
   "designation": "Computer Vision Engineer | Edge AI | Deep Learning",
+  "current": "Building Edge AI at Emdee Digitronics",
   "resumeUrl": "assets/resume.pdf",
   "email": "playatanu@gmail.com",
 
@@ -40,7 +41,18 @@
     "Image Classification",
     "Object Detection",
     "Image Segmentation",
-    "Pose Estimation"
+    "Pose Estimation",
+    "Object Tracking",
+    "Face Detection",
+    "Face Recognition",
+    "Video Analytics",
+    "Anomaly Detection",
+    "Depth Estimation",
+    "Transfer Learning",
+    "Fine Tuning",
+    "Model Optimization",
+    "Model Quantization",
+    "Data Augmentation"
   ],
 
   "tools": [
@@ -48,11 +60,16 @@
     "C++",
     "OpenCV",
     "PyTorch",
-    "ONNX",
+    "ONNX / ONNX Runtime",
     "TensorRT",
     "TFLite / LiteRT",
     "OpenVINO",
-    "Jetson"
+    "RKNN",
+    "Jetson",
+    "CUDA / cuDNN",
+    "Docker",
+    "Git / GitHub",
+    "Linux"
   ],
 
   "projects": [
@@ -62,11 +79,12 @@
       "working": true,
       "name": "The Bee Programming Language",
       "description": "Bee is a friendly programming language with a built-in native (LLVM) JIT.",
-      "tags": ["Programming Language"],
+      "tags": ["Bee", "Programming Language"],
       "metric": "Faster than Java and Python",
       "github": "https://github.com/playatanu/bee"
     },
     {
+      "cover": "https://github.com/playatanu/simpleVision/blob/main/benchmark/bench_stages.png?raw=true",
       "name": "simpleVision - Computer Vision Toolkit",
       "description": "SimpleVision is a lightweight computer vision toolkit built for fast real-time detection pipelines.",
       "tags": ["Python", "PyAV"],
@@ -92,7 +110,7 @@
       "cover": "https://github.com/playatanu/workout-vision/raw/main/assets/squat.gif",
       "name": "Real Time Squat Counter",
       "description": "Real time workout tracking system, that detects multiple exercises, counts reps, analyzes posture, and provides live visual feedback optimized for edge devices.",
-      "tags": ["Python", "Pose Estimation"],
+      "tags": ["Pose Estimation", "Movenet"],
       "metric": "30+ FPS on edge",
       "github": "https://github.com/playatanu/workout-vision",
       "youtube": "https://youtu.be/0Q-pjTRqR1M?si=uZ8ueowGLxpgwYCf"
@@ -101,7 +119,7 @@
       "cover": "https://github.com/playatanu/Movenet/raw/main/assets/fall_detection.gif",
       "name": "Real Time Fall Detection",
       "description": "A real time fall detection system that detects sudden falls, analyzes body posture and movement, distinguishes falls from normal activities, and provides instant visual and audio alerts, optimized for low-latency edge-device deployment.",
-      "tags": ["Python", "Pose Estimation"],
+      "tags": ["Pose Estimation", "Movenet"],
       "metric": "Low latency",
       "github": "https://github.com/playatanu/Movenet",
       "youtube": "https://youtu.be/oxNlQq6c0i4?si=qaCPMix5N0omhH68"
@@ -122,7 +140,7 @@
       "github": "https://github.com/playatanu/VIS-RPB3"
     },
     {
-      "cover": "https://github.com/playatanu/object-detection-app/raw/main/screenshot/001.png",
+      "cover": "https://github.com/playatanu/object-detection-app/blob/main/screenshot/sample.gif?raw=true",
       "name": "Object Detection on Android (Flutter)",
       "tags": ["YoloV8", "Object Detection", "Flutter"],
       "description": "Object Detection on Android (Flutter) - A mobile application that detects and identifies objects in real time using the device camera with efficient on device processing.",
@@ -130,7 +148,7 @@
       "youtube": "https://youtu.be/nUj9VhqMpEA?si=9TY_zLWWNFXWGJUk"
     },
     {
-      "cover": "https://camo.githubusercontent.com/f815c48ef0fbee7c0da2e327edd397862422e2474c26325687391dba7b15f5c7/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f4457624b493350455a4e732f6d617872657364656661756c742e6a7067",
+      "cover": "https://github.com/playatanu/similarity-search/raw/main/assets/sample.gif",
       "name": "Image Similarity Search",
       "tags": ["ResNet50", "FAISS", "Embedding"],
       "description": "Similarity based image search system that enables efficient retrieval of visually similar images.",
@@ -138,7 +156,7 @@
       "youtube": "https://youtu.be/DWbKI3PEZNs?si=zRJ_j1kAkaRUBK8D"
     },
     {
-      "cover": "https://github.com/playatanu/hair-color-try-on/raw/main/output/green.png",
+      "cover": "https://github.com/playatanu/hair-color-try-on/raw/main/assets/sample.gif",
       "name": "Virtual Hair Colour Try-On System for Hair Makeovers",
       "tags": ["U-Net", "Image Segmentation"],
       "description": "Virtual Hair Colour Try-On System for Hair Makeovers is a deep learning-based application that allows users to experiment with different hair colors on their photos. ",
@@ -158,6 +176,64 @@
     }
 
   ],
+
+  "certifications": [
+    {
+      "name": "Introduction to AI on AMD AI PC",
+      "issuer": "AMD",
+      "date": "2026",
+      "link": "https://drive.google.com/file/d/1unGk93uMoAF4Uh-kxaNoXdlsytL6LdpX"
+    },
+    {
+      "name": "AI on AMD",
+      "issuer": "AMD",
+      "date": "2026",
+      "link": "https://drive.google.com/file/d/1Lux7TsTbsb4DIg9q5EvGhK48eCS7HrcZ"
+    },
+    {
+      "name": "GPU Programming with C++ and CUDA",
+      "issuer": "Packt",
+      "date": "2026",
+      "link": "https://drive.google.com/file/d/1dUmHqb-CwaT2e8zwo_lA3is96XoflX-D"
+    },
+    {
+      "name": "Introduction to Computer Vision and Image Processing",
+      "issuer": "IBM",
+      "date": "2025",
+      "link": "https://drive.google.com/file/d/12hHAzyN9UP-g6dMqt7RoucRCDAuoSj4d"
+    },
+    {
+      "name": "Computer Vision",
+      "issuer": "Kaggle",
+      "date": "2025",
+      "link": "https://drive.google.com/file/d/1toHfpUyl3dmm95a91cOcckKVMUnc0dJE"
+    },
+    {
+      "name": "Digital Image Processing with OpenCV in Python",
+      "issuer": "GEO University",
+      "date": "2025",
+      "link": "https://drive.google.com/file/d/1UxD0m2ShLi_rA2HsPBBxDvX-wDUpLmgc"
+    },
+    {
+      "name": "Deep Learning for Ecological Studies",
+      "issuer": "IIRS, ISRO",
+      "date": "2024",
+      "link": "https://drive.google.com/file/d/1GqUauJ6_emmSiRVarj2f_t3CkUdbPi03"
+    },
+    {
+      "name": "Intro to Machine Learning",
+      "issuer": "Kaggle",
+      "date": "2024",
+      "link": "https://drive.google.com/file/d/1SuJ-UC3NBBOtqZ2jkPdHVgAjxIgC5suH"
+    },
+    {
+      "name": "Getting Started with Deep Learning",
+      "issuer": "NVIDIA",
+      "date": "2024",
+      "link": "https://drive.google.com/file/d/1DX4NGKqKMS669scvEQbgQ93gOR4natm3"
+    }
+  ],
+
   "education": [
     {
       "institute": "Manipal University Jaipur",
