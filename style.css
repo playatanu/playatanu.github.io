@@ -168,6 +168,14 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
   letter-spacing: -0.01em;
 }
 
+/* ---------- About ---------- */
+.about-text {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.about-text strong { color: var(--text); font-weight: 600; }
+
 /* ---------- Experience ---------- */
 .exp-item { margin-bottom: 24px; }
 .exp-item:last-child { margin-bottom: 0; }
@@ -192,6 +200,16 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
 .desc-list li { margin: 2px 0; }
 
 /* ---------- Skills ---------- */
+.skill-group { margin-bottom: 22px; }
+.skill-group:last-child { margin-bottom: 0; }
+.skill-group-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
 .skills-list {
   list-style: none;
   display: flex;
@@ -214,6 +232,7 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -222,7 +241,88 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
   overflow: hidden;
   transition: transform 0.18s ease, border-color 0.18s ease;
 }
-.project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.project-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+/* Pinned badge — solid accent pill (original look) */
+.pin-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+.pin-badge svg { flex-shrink: 0; }
+
+/* Status labels — solid, colour-coded pill with a small dot */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+.status-badge.is-live {
+  background: #13291d;
+  border: 1px solid #2f6043;
+  color: #6ee7a0;
+}
+.status-badge.is-soon {
+  background: #2a2113;
+  border: 1px solid #6b532b;
+  color: #edc07a;
+}
+
+/* Status labels stack top-left without overlapping */
+.status-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.s-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.s-dot-live { background: #4ade80; animation: livePulse 1.8s ease-out infinite; }
+.s-dot-soon { background: #e0a84f; }
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70%  { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+/* Status projects stay visually neutral — the label alone signals state. */
+
+/* Inline note where links would go, for status projects without links yet */
+.project-wip,
+.project-building {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
 
 .project-cover {
   width: 100%;
@@ -267,7 +367,25 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
   flex: 1;
 }
 .project-name { font-size: 1.05rem; font-weight: 600; }
-.project-desc { color: var(--muted); font-size: 0.92rem; margin-top: 6px; }
+
+/* Headline metric chip, e.g. "30+ FPS on edge" */
+.project-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: rgba(109, 140, 255, 0.1);
+  border: 1px solid rgba(109, 140, 255, 0.32);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.project-metric svg { flex-shrink: 0; }
+
+.project-desc { color: var(--muted); font-size: 0.92rem; margin-top: 10px; }
 
 .project-tags {
   display: flex;
@@ -321,6 +439,45 @@ section { padding: 44px 0; border-top: 1px solid var(--border); }
 .edu-institute { font-size: 1.05rem; font-weight: 600; }
 .edu-degree { color: var(--muted); font-size: 0.92rem; margin-top: 2px; }
 .edu-date { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+
+/* ---------- Get in Touch ---------- */
+.contact-lead {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.contact-email {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.contact-email:hover { border-color: var(--accent); }
+
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  background: var(--surface);
+  transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.social-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.social-link svg { display: block; }
 
 /* ---------- Footer ---------- */
 .footer {

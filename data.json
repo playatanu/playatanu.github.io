@@ -9,6 +9,16 @@
   "resumeUrl": "assets/resume.pdf",
   "email": "playatanu@gmail.com",
 
+  "social": {
+    "github": "https://github.com/playatanu",
+    "linkedin": "https://www.linkedin.com/in/playatanu",
+    "x": "https://www.x.com/playatanu",
+    "youtube": "https://www.youtube.com/@playatanu",
+    "instagram": "https://www.instagram.com/playatanu"
+  },
+
+  "about": "I'm a **Computer Vision Engineer** who loves turning research ideas into practical, real time systems. My work spans the full pipeline, data collection, model training and optimization, and deployment, from **multi camera / multi IP (CCTV)** video analytics for real time monitoring, detection, and video processing across many streams, to running models on **Edge AI** devices like **NVIDIA Jetson**, **Rockchip**, and **Radxa**.\n\nI care about building **efficient, reliable, and low latency** solutions, and I enjoy exploring deep learning from first principles, whether that's writing a framework from scratch or squeezing more FPS out of an edge device.",
+
   "experience": [
     {
       "company": "Emdee Digitronics",
@@ -25,15 +35,6 @@
   ],
 
   "skills": [
-    "Python",
-    "C++",
-    "OpenCV",
-    "PyTorch",
-    "ONNX",
-    "TensorRT",
-    "TFLite / LiteRT",
-    "OpenVINO",
-    "Jetson",
     "Deep Learning",
     "Image Processing",
     "Image Classification",
@@ -42,7 +43,29 @@
     "Pose Estimation"
   ],
 
+  "tools": [
+    "Python",
+    "C++",
+    "OpenCV",
+    "PyTorch",
+    "ONNX",
+    "TensorRT",
+    "TFLite / LiteRT",
+    "OpenVINO",
+    "Jetson"
+  ],
+
   "projects": [
+    {
+      "pinned": true,
+      "// upcoming": true,
+      "working": true,
+      "name": "The Bee Programming Language",
+      "description": "Bee is a friendly programming language with a built-in native (LLVM) JIT.",
+      "tags": ["Programming Language"],
+      "metric": "Faster than Java and Python",
+      "github": "https://github.com/playatanu/bee"
+    },
     {
       "name": "simpleVision - Computer Vision Toolkit",
       "description": "SimpleVision is a lightweight computer vision toolkit built for fast real-time detection pipelines.",
@@ -50,6 +73,7 @@
       "github": "https://github.com/playatanu/simpleVision"
     },
     {
+      "pinned": true,
       "cover": "https://github.com/playatanu/NNRT/blob/main/docs/assets/nnrt_banner.jpg?raw=true",
       "name": "NNRT - Deep Learning Framework",
       "description": "NNRT is a Deep Learning framework built from scratch in Python.",
@@ -57,6 +81,7 @@
       "github": "https://github.com/playatanu/NNRT"
     },
     {
+      "pinned": true,
       "cover": "https://raw.githubusercontent.com/visionai4bharat/swatahVision/main/assets/cover.png",
       "name": "swatahvision - Computer Vision Library",
       "description": "swatahVision is a computer vision library that simplifies model loading, inference, and visualization for image classification and object detection.",
@@ -68,6 +93,7 @@
       "name": "Real Time Squat Counter",
       "description": "Real time workout tracking system, that detects multiple exercises, counts reps, analyzes posture, and provides live visual feedback optimized for edge devices.",
       "tags": ["Python", "Pose Estimation"],
+      "metric": "30+ FPS on edge",
       "github": "https://github.com/playatanu/workout-vision",
       "youtube": "https://youtu.be/0Q-pjTRqR1M?si=uZ8ueowGLxpgwYCf"
     },
@@ -76,6 +102,7 @@
       "name": "Real Time Fall Detection",
       "description": "A real time fall detection system that detects sudden falls, analyzes body posture and movement, distinguishes falls from normal activities, and provides instant visual and audio alerts, optimized for low-latency edge-device deployment.",
       "tags": ["Python", "Pose Estimation"],
+      "metric": "Low latency",
       "github": "https://github.com/playatanu/Movenet",
       "youtube": "https://youtu.be/oxNlQq6c0i4?si=qaCPMix5N0omhH68"
     },
@@ -120,19 +147,16 @@
     }
   ],
 
-  "// articles": [
+  "articles": [
     {
-      "cover": "Article Cover 1",
-      "title": "Article Title 1",
-      "description": "Article Description 1",
-      "link": "https://sample.com"
-    },
-    {
-      "cover": "Article Cover 2",
-      "title": "Article Title 2",
-      "description": "Article Description 2",
-      "link": "https://sample.com"
+      "// cover": "",
+      "pinned": true,
+      "title": "Should We Use FP16 Instead of FP32 in Production?",
+      "tags" : ["Optimization"],
+      "description": "When we build an ML model, we usually start with FP32. It is safe, stable, and gives us good precision ...",
+      "link": "https://medium.com/@playatanu/should-we-use-fp16-instead-of-fp32-in-production-a7c5a4aa0d92"
     }
+
   ],
   "education": [
     {

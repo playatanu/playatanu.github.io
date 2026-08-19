@@ -7,6 +7,27 @@
   <title>Atanu Debnath (playatanu)</title>
   <meta name="description" id="meta-description"
     content="Atanu Debnath (playatanu) is an AI Engineer passionate about building intelligent systems that solve real-world problems. His work focuses on computer vision, deep learning, real-time inference, and Edge AI, with a strong interest in developing efficient, reliable, and practical AI solutions." />
+
+  <!-- Open Graph / social share preview. These are static so crawlers
+       (LinkedIn, WhatsApp, X, Facebook) that don't run JS can read them. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atanu Debnath" />
+  <meta property="og:title" content="Atanu Debnath — Computer Vision Engineer" />
+  <meta property="og:description"
+    content="Computer Vision Engineer working on Edge AI, deep learning, and real-time video analytics — from multi camera / CCTV pipelines to on-device inference on NVIDIA Jetson, Rockchip, and Radxa." />
+  <meta property="og:url" content="https://playatanu.github.io/" />
+  <meta property="og:image" content="https://playatanu.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Atanu Debnath — Computer Vision Engineer" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Atanu Debnath — Computer Vision Engineer" />
+  <meta name="twitter:description"
+    content="Computer Vision Engineer working on Edge AI, deep learning, and real-time video analytics." />
+  <meta name="twitter:image" content="https://playatanu.github.io/assets/og-image.png" />
+
+  <link rel="canonical" href="https://playatanu.github.io/" />
   <link rel="icon" id="favicon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -31,14 +52,26 @@
   </header>
 
   <main class="container">
+    <section id="about-section">
+      <h2 class="section-title">About</h2>
+      <div class="about-text" id="about"></div>
+    </section>
+
     <section id="experience-section">
       <h2 class="section-title">Experience</h2>
       <div id="experience"></div>
     </section>
 
     <section id="skills-section">
-      <h2 class="section-title">Skills</h2>
-      <ul class="skills-list" id="skills"></ul>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skill-group" id="skills-group">
+        <h3 class="skill-group-label">Skills</h3>
+        <ul class="skills-list" id="skills"></ul>
+      </div>
+      <div class="skill-group" id="tools-group">
+        <h3 class="skill-group-label">Tools &amp; Frameworks</h3>
+        <ul class="skills-list" id="tools"></ul>
+      </div>
     </section>
 
     <section id="projects-section">
@@ -60,6 +93,15 @@
     <section id="education-section">
       <h2 class="section-title">Education</h2>
       <div id="education"></div>
+    </section>
+
+    <section id="contact-section">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="contact-lead">
+        Have a project, role, or idea in mind? Reach me at
+        <a id="contact-email" class="contact-email" href="#"></a>.
+      </p>
+      <div class="contact-socials" id="contact-socials"></div>
     </section>
   </main>
 
@@ -180,6 +222,14 @@
         mailBtn.style.display = "none";
       }
 
+      const aboutSection = document.getElementById("about-section");
+      if (data.about) {
+        aboutSection.style.display = "";
+        document.getElementById("about").innerHTML = formatText(data.about);
+      } else {
+        aboutSection.style.display = "none";
+      }
+
       document.getElementById("experience").innerHTML = (data.experience || [])
         .map(
           (e) =>
@@ -194,9 +244,20 @@
         )
         .join("");
 
-      document.getElementById("skills").innerHTML = (data.skills || [])
-        .map((s) => "<li>" + esc(s) + "</li>")
-        .join("");
+      // Skills & Tools: two labelled groups. Each group hides itself if empty.
+      const renderChips = (listId, groupId, items) => {
+        const group = document.getElementById(groupId);
+        if (Array.isArray(items) && items.length) {
+          group.style.display = "";
+          document.getElementById(listId).innerHTML = items
+            .map((s) => "<li>" + esc(s) + "</li>")
+            .join("");
+        } else {
+          group.style.display = "none";
+        }
+      };
+      renderChips("skills", "skills-group", data.skills);
+      renderChips("tools", "tools-group", data.tools);
 
       const githubIcon =
         '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">' +
@@ -212,6 +273,30 @@
         '<path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.39.58A3 3 0 0 0 .5 6.2 ' +
         "31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12C4.5 20.5 12 20.5 12 20.5s7.5 0 " +
         '9.39-.58a3 3 0 0 0 2.11-2.12A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>';
+
+      const pinIcon =
+        '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">' +
+        '<path d="M16 3l5 5-1.5 1.5-1-1-4 4 .5 4.5-2 2-3.5-3.5L4 21l-1-1 4.5-5.5L4 11l2-2 4.5.5 4-4-1-1L15 3z"/></svg>';
+
+      // "Pinned" badge shown on important cards. Set "pinned": true in data.json.
+      const pinBadge = (pinned) =>
+        pinned ? '<span class="pin-badge" title="Pinned">' + pinIcon + "Pinned</span>" : "";
+
+      // Status labels. Colour lives only in the small dot, keeping the pill quiet.
+      const statusBadge = (cls, dot, label, title) =>
+        '<span class="status-badge ' + cls + '" title="' + title + '">' +
+        '<span class="s-dot ' + dot + '"></span>' + label + "</span>";
+      // "Coming Soon" for planned projects. Set "upcoming": true in data.json.
+      const upcomingBadge = (upcoming) =>
+        upcoming ? statusBadge("is-soon", "s-dot-soon", "Coming soon", "Coming soon") : "";
+      // "In Progress" for projects being actively built. Set "working": true.
+      const workingBadge = (working) =>
+        working ? statusBadge("is-live", "s-dot-live", "In progress", "Actively building") : "";
+
+      // Move pinned items to the front while keeping the original relative
+      // order of everything else (Array.sort is stable).
+      const pinnedFirst = (items) =>
+        [...items].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
 
       // How many cards to show before the "See more" button appears.
       const VISIBLE_LIMIT = 6;
@@ -272,17 +357,36 @@
         return links.length ? '<div class="project-links">' + links.join("") + "</div>" : "";
       };
 
-      const projects = data.projects || [];
+      // Optional headline metric for a project, e.g. "30+ FPS on edge".
+      const boltIcon =
+        '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">' +
+        '<path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>';
+      const projectMetric = (metric) =>
+        metric
+          ? '<div class="project-metric">' + boltIcon + "<span>" + esc(metric) + "</span></div>"
+          : "";
+
+      const projects = pinnedFirst(data.projects || []);
       document.getElementById("projects").innerHTML = projects
         .map(
           (p, i) =>
-            '<article class="project-card' + (i >= VISIBLE_LIMIT ? " is-hidden" : "") + '">' +
+            '<article class="project-card' +
+            (i >= VISIBLE_LIMIT ? " is-hidden" : "") +
+            (p.upcoming ? " is-upcoming" : "") +
+            (p.working ? " is-working" : "") + '">' +
+            pinBadge(p.pinned) +
+            ((p.working || p.upcoming)
+              ? '<div class="status-badges">' + workingBadge(p.working) + upcomingBadge(p.upcoming) + "</div>"
+              : "") +
             coverHTML(p.name, p.cover) +
             '<div class="project-body">' +
             '<h3 class="project-name">' + esc(p.name) + "</h3>" +
+            projectMetric(p.metric) +
             '<p class="project-desc">' + formatText(p.description) + "</p>" +
             projectTags(p.tags) +
-            projectLinks(p) +
+            (projectLinks(p) ||
+              (p.upcoming ? '<div class="project-links"><span class="project-wip">Work in progress</span></div>' :
+               p.working ? '<div class="project-links"><span class="project-building">Actively building</span></div>' : "")) +
             "</div>" +
             "</article>"
         )
@@ -291,17 +395,19 @@
 
       // Articles (same card layout as projects)
       const articlesSection = document.getElementById("articles-section");
-      const articles = data.articles || [];
+      const articles = pinnedFirst(data.articles || []);
       if (articles.length) {
         articlesSection.style.display = "";
         document.getElementById("articles").innerHTML = articles
           .map(
             (a, i) =>
               '<article class="project-card' + (i >= VISIBLE_LIMIT ? " is-hidden" : "") + '">' +
+              pinBadge(a.pinned) +
               coverHTML(a.title, a.cover) +
               '<div class="project-body">' +
               '<h3 class="project-name">' + esc(a.title) + "</h3>" +
               '<p class="project-desc">' + formatText(a.description) + "</p>" +
+              projectTags(a.tags) +
               (a.link
                 ? '<div class="project-links">' +
                 '<a class="project-link" href="' + esc(a.link) +
@@ -330,6 +436,48 @@
             "</div>"
         )
         .join("");
+
+      // Get in Touch: email as a text link + social icons.
+      const contactSection = document.getElementById("contact-section");
+      const emailEl = document.getElementById("contact-email");
+      if (data.email) {
+        emailEl.href = "mailto:" + data.email;
+        emailEl.textContent = data.email;
+      } else {
+        emailEl.closest(".contact-lead").style.display = "none";
+      }
+
+      const linkedinIcon =
+        '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">' +
+        '<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>';
+
+      const instagramIcon =
+        '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">' +
+        '<path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.36 2.67.94 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12-.66-.66-1.33-1.08-2.12-1.38-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>';
+
+      const xIcon =
+        '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">' +
+        '<path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.48 3.24H4.29L17.61 20.65z"/></svg>';
+
+      const social = data.social || {};
+      const socialLinks = [
+        { key: "github", label: "GitHub", icon: githubIcon },
+        { key: "linkedin", label: "LinkedIn", icon: linkedinIcon },
+        { key: "youtube", label: "YouTube", icon: youtubeIcon },
+        // { key: "x", label: "X", icon: xIcon },
+        // { key: "instagram", label: "Instagram", icon: instagramIcon },
+      ];
+      const socialHTML = socialLinks
+        .filter((s) => social[s.key])
+        .map(
+          (s) =>
+            '<a class="social-link" href="' + esc(social[s.key]) +
+            '" target="_blank" rel="noopener" aria-label="' + s.label +
+            '" title="' + s.label + '">' + s.icon + "</a>"
+        )
+        .join("");
+      document.getElementById("contact-socials").innerHTML = socialHTML;
+      if (!data.email && !socialHTML) contactSection.style.display = "none";
     }
 
     render();
@@ -364,12 +512,11 @@
       let currentY = 0;
       let targetX = 0;
       let targetY = 0;
-      const smoothness = 0.08; // Very smooth
+      const smoothness = 0.2; // Higher = tail follows the cursor more tightly
 
       const trail = [];
-      const maxTrail = 25;
-      let lastAddX = 0;
-      let lastAddY = 0;
+      const maxTrail = 22;
+      let started = false;
 
       window.addEventListener('resize', () => {
         width = window.innerWidth;
@@ -381,6 +528,13 @@
       document.addEventListener('mousemove', (e) => {
         targetX = e.clientX;
         targetY = e.clientY;
+        // First movement: snap to the pointer so the tail doesn't shoot in
+        // from the top-left corner.
+        if (!started) {
+          currentX = e.clientX;
+          currentY = e.clientY;
+          started = true;
+        }
       });
 
       document.addEventListener('mouseenter', (e) => {
@@ -388,8 +542,7 @@
         currentY = e.clientY;
         targetX = e.clientX;
         targetY = e.clientY;
-        lastAddX = e.clientX;
-        lastAddY = e.clientY;
+        started = true;
       });
 
       // Hide cursor trail when mouse leaves the window
@@ -398,39 +551,69 @@
       });
 
       function draw() {
-        // Smooth interpolation
+        // Smooth interpolation toward the real pointer position.
         currentX += (targetX - currentX) * smoothness;
         currentY += (targetY - currentY) * smoothness;
 
-        // Add to trail with distance threshold
-        const dx = currentX - lastAddX;
-        const dy = currentY - lastAddY;
-        if (Math.sqrt(dx * dx + dy * dy) > 1) {
+        // Record the smoothed position every frame. Even (per-frame) spacing
+        // removes the snap/jitter caused by the old distance threshold, and
+        // the newest point is always exactly the cursor position — so the
+        // tail stays glued to the cursor dot.
+        if (started) {
           trail.push({ x: currentX, y: currentY });
-          lastAddX = currentX;
-          lastAddY = currentY;
-          if (trail.length > maxTrail) {
-            trail.shift();
-          }
+          if (trail.length > maxTrail) trail.shift();
         }
 
-        // Clear with slight fade for smoother appearance
         ctx.clearRect(0, 0, width, height);
 
-        // Draw trail
-        if (trail.length >= 2) {
-          for (let i = 0; i < trail.length - 1; i++) {
-            const p1 = trail[i];
-            const p2 = trail[i + 1];
-            const progress = i / (trail.length - 1);
+        // Draw the trail as one smooth path. Each raw sample can be far apart
+        // when the pointer moves fast, so we subdivide the quadratic curves
+        // into many short sub-points. Densifying like this keeps the drawn
+        // segments (and their glow) overlapping into a single continuous
+        // stroke instead of breaking up into a row of separate dots.
+        if (trail.length >= 3) {
+          const n = trail.length;
+          const SUB = 8; // sub-points per segment
 
-            // Exponential fade
-            const alpha = Math.pow(1 - progress, 0.8) * 0.85;
-            const lineWidth = 1.5 + Math.pow(1 - progress, 0.5) * 3.5;
+          // Build a densified centreline through the sample midpoints, each
+          // point carrying its progress (0 = tail tip, 1 = cursor).
+          const pts = [];
+          for (let i = 1; i < n - 1; i++) {
+            const prev = trail[i - 1];
+            const curr = trail[i];
+            const next = trail[i + 1];
+            const m1 = { x: (prev.x + curr.x) / 2, y: (prev.y + curr.y) / 2 };
+            const m2 = { x: (curr.x + next.x) / 2, y: (curr.y + next.y) / 2 };
+            for (let s = 0; s < SUB; s++) {
+              const t = s / SUB;
+              const it = 1 - t;
+              pts.push({
+                x: it * it * m1.x + 2 * it * t * curr.x + t * t * m2.x,
+                y: it * it * m1.y + 2 * it * t * curr.y + t * t * m2.y,
+                prog: (i - 1 + t) / (n - 2),
+              });
+            }
+          }
+          pts.push({ x: currentX, y: currentY, prog: 1 });
+
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          for (let j = 0; j < pts.length - 1; j++) {
+            const p1 = pts[j];
+            const p2 = pts[j + 1];
+            const progress = p1.prog;
+            // Width: fat/soft at the tail tip, tapering to a fine point at the
+            // cursor. Brightness runs the other way — brightest at the cursor
+            // end so it reads as a sharp, bright point.
+            const lineWidth = 0.6 + Math.pow(1 - progress, 1.8) * 5;
+            const alpha = 0.2 + Math.pow(progress, 1.1) * 0.75;
+            // Blur fades out toward the cursor so that end stays crisp while
+            // the tail keeps its soft glow.
+            const blur = 2 + 18 * (1 - progress);
 
             // White glow line
             ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
-            ctx.shadowBlur = 20;
+            ctx.shadowBlur = blur;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -438,14 +621,14 @@
             ctx.lineWidth = lineWidth;
             ctx.stroke();
 
-            // Soft outer glow
+            // Soft outer glow — only on the tail, faded out near the cursor.
             ctx.shadowColor = 'rgba(255, 255, 255, 0.1)';
-            ctx.shadowBlur = 40;
+            ctx.shadowBlur = blur * 2;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.2})`;
-            ctx.lineWidth = lineWidth + 10;
+            ctx.lineWidth = lineWidth + 5 * (1 - progress);
             ctx.stroke();
           }
         }
