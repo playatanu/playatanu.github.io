@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE}}</title>
+  <meta name="description" id="meta-description" content="{{META_DESCRIPTION}}" />
+
+  <!-- Open Graph / social share preview. These are static so crawlers
+       (LinkedIn, WhatsApp, X, Facebook) that don't run JS can read them. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atanu Debnath" />
+  <meta property="og:title" content="Atanu Debnath — Computer Vision Engineer" />
+  <meta property="og:description"
+    content="Computer Vision Engineer working on Edge AI, deep learning, and real-time video analytics — from multi camera / CCTV pipelines to on-device inference on NVIDIA Jetson, Rockchip, and Radxa." />
+  <meta property="og:url" content="https://playatanu.github.io/" />
+  <meta property="og:image" content="https://playatanu.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Atanu Debnath — Computer Vision Engineer" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Atanu Debnath — Computer Vision Engineer" />
+  <meta name="twitter:description"
+    content="Computer Vision Engineer working on Edge AI, deep learning, and real-time video analytics." />
+  <meta name="twitter:image" content="https://playatanu.github.io/assets/og-image.png" />
+
+  <link rel="canonical" href="https://playatanu.github.io/" />
+  <link rel="icon" id="favicon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Enables scroll-reveal only when JS is on, so content never stays hidden -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Structured data (schema.org Person) so search engines can show a rich
+       result with name, role, and social profiles. Kept static for crawlers. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Atanu Debnath",
+    "alternateName": "playatanu",
+    "url": "https://playatanu.github.io/",
+    "image": "https://playatanu.github.io/assets/og-image.png",
+    "jobTitle": "Computer Vision Engineer",
+    "email": "mailto:playatanu@gmail.com",
+    "description": "Computer Vision Engineer working on Edge AI, deep learning, and real-time video analytics — from multi camera / CCTV pipelines to on-device inference on NVIDIA Jetson, Rockchip, and Radxa.",
+    "knowsAbout": [
+      "Computer Vision", "Deep Learning", "Edge AI", "Object Detection",
+      "Image Segmentation", "Pose Estimation", "TensorRT", "ONNX", "PyTorch", "OpenCV"
+    ],
+    "worksFor": { "@type": "Organization", "name": "Emdee Digitronics" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Manipal University Jaipur" },
+      { "@type": "CollegeOrUniversity", "name": "University of Kalyani" }
+    ],
+    "sameAs": [
+      "https://github.com/playatanu",
+      "https://www.linkedin.com/in/playatanu",
+      "https://www.x.com/playatanu",
+      "https://www.youtube.com/@playatanu",
+      "https://www.instagram.com/playatanu"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="name" id="name">{{NAME}}</h1>
+        <p class="designation" id="designation">{{DESIGNATION}}</p>
+        {{CURRENT_BLOCK}}
+        <div class="actions">
+          {{ACTIONS}}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about-section">
+      <h2 class="section-title">About</h2>
+      <div class="about-text" id="about">{{ABOUT}}</div>
+    </section>
+
+    <section id="experience-section">
+      <h2 class="section-title">Experience</h2>
+      <div id="experience">{{EXPERIENCE}}</div>
+    </section>
+
+    <section id="skills-section">
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skill-group" id="skills-group">
+        <h3 class="skill-group-label">Skills</h3>
+        <ul class="skills-list" id="skills">{{SKILLS}}</ul>
+      </div>
+      <div class="skill-group" id="tools-group">
+        <h3 class="skill-group-label">Tools &amp; Frameworks</h3>
+        <ul class="skills-list" id="tools">{{TOOLS}}</ul>
+      </div>
+    </section>
+
+    <section id="projects-section">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid" id="projects">{{PROJECTS}}</div>
+      <div class="see-more-wrap">
+        {{PROJECTS_MORE}}
+      </div>
+    </section>
+
+    <section id="articles-section"{{ARTICLES_SECTION_ATTR}}>
+      <h2 class="section-title">Articles</h2>
+      <div class="projects-grid" id="articles">{{ARTICLES}}</div>
+      <div class="see-more-wrap">
+        {{ARTICLES_MORE}}
+      </div>
+    </section>
+
+    <section id="certifications-section"{{CERTIFICATIONS_SECTION_ATTR}}>
+      <h2 class="section-title">Certifications</h2>
+      <div class="cert-grid" id="certifications">{{CERTIFICATIONS}}</div>
+      <div class="see-more-wrap">
+        {{CERTIFICATIONS_MORE}}
+      </div>
+    </section>
+
+    <section id="education-section">
+      <h2 class="section-title">Education</h2>
+      <div id="education">{{EDUCATION}}</div>
+    </section>
+
+    <section id="contact-section">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="contact-lead">
+        Have a project, role, or idea in mind? Reach me at
+        <a id="contact-email" class="contact-email" href="{{EMAIL_HREF}}">{{EMAIL_TEXT}}</a>.
+      </p>
+      <div class="contact-socials" id="contact-socials">{{CONTACT_SOCIALS}}</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">{{YEAR}}</span> <span id="footer-name">{{NAME}}</span></p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="to-top" class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- Full-screen image preview (lightbox) for cover images -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <button class="lightbox-close" type="button" aria-label="Close preview">&times;</button>
+    <div class="lightbox-spinner" aria-hidden="true"></div>
+    <img class="lightbox-img" alt="" />
+  </div>
+
+  <script>
+    // NOTE: Page content is pre-rendered at build time from data.json by
+    // build.js, so it is present in the HTML source for crawlers and works
+    // without JavaScript. The scripts below only add interactivity.
+
+    // "See more / See less" toggles for grids that exceed the visible limit.
+    // build.js sets the button text ("See more (N)") and data-target; extra
+    // cards already carry the .is-hidden class.
+    (function () {
+      document.querySelectorAll(".see-more-btn").forEach((btn) => {
+        const grid = btn.dataset.target && document.getElementById(btn.dataset.target);
+        if (!grid) return;
+        const moreLabel = btn.textContent;
+        btn.addEventListener("click", () => {
+          const open = grid.classList.toggle("show-all");
+          btn.textContent = open ? "See less" : moreLabel;
+        });
+      });
+    })();
+
+
+    // Scroll-reveal: fade each section in as it enters the viewport.
+    (function () {
+      const sections = document.querySelectorAll("main > section");
+      if (!("IntersectionObserver" in window)) {
+        sections.forEach((s) => s.classList.add("is-visible"));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      sections.forEach((s) => io.observe(s));
+    })();
+
+
+    // Back-to-top button: appears after scrolling, smooth-scrolls to top.
+    (function () {
+      const btn = document.getElementById("to-top");
+      const onScroll = () => btn.classList.toggle("show", window.scrollY > 500);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+      btn.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+    })();
+
+
+    // Image preview / lightbox: click any cover image to view it full screen.
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = lightbox.querySelector(".lightbox-img");
+
+      // While the (often large) image loads, show a spinner and fade the
+      // image in once it's ready, so clicking gives immediate feedback.
+      lightboxImg.addEventListener("load", () => lightbox.classList.remove("loading"));
+      lightboxImg.addEventListener("error", () => lightbox.classList.remove("loading"));
+
+      const openPreview = (src, alt) => {
+        lightbox.classList.add("open", "loading");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        // If it's already cached it decodes immediately and 'load' fires fast.
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        if (lightboxImg.complete && lightboxImg.naturalWidth) lightbox.classList.remove("loading");
+      };
+      const closePreview = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        // Clear after the fade so the old image doesn't flash on reopen.
+        setTimeout(() => { if (!lightbox.classList.contains("open")) lightboxImg.src = ""; }, 200);
+      };
+
+      // Delegate clicks so it works for every cover image.
+      document.addEventListener("click", (e) => {
+        const img = e.target.closest ? e.target.closest("img.project-cover") : null;
+        if (img && img.currentSrc && img.style.display !== "none") {
+          openPreview(img.currentSrc || img.src, img.alt);
+        }
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        // Close when clicking the backdrop or the close button (not the image).
+        if (e.target === lightbox || e.target.classList.contains("lightbox-close")) closePreview();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closePreview();
+      });
+    })();
+
+
+    // Ultra smooth white cursor trail (with mobile detection)
+    (function () {
+      // Check if device has a mouse/cursor
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      // Also check for touch support
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      // Disable on mobile devices
+      if (isMobile || hasTouch) {
+        console.log('Cursor trail disabled on mobile device');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999';
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      // Smooth interpolation
+      let currentX = 0;
+      let currentY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      const smoothness = 0.2; // Higher = tail follows the cursor more tightly
+
+      const trail = [];
+      const maxTrail = 22;
+      let started = false;
+
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        // First movement: snap to the pointer so the tail doesn't shoot in
+        // from the top-left corner.
+        if (!started) {
+          currentX = e.clientX;
+          currentY = e.clientY;
+          started = true;
+        }
+      });
+
+      document.addEventListener('mouseenter', (e) => {
+        currentX = e.clientX;
+        currentY = e.clientY;
+        targetX = e.clientX;
+        targetY = e.clientY;
+        started = true;
+      });
+
+      // Hide cursor trail when mouse leaves the window
+      document.addEventListener('mouseleave', () => {
+        trail.length = 0;
+      });
+
+      function draw() {
+        // Smooth interpolation toward the real pointer position.
+        currentX += (targetX - currentX) * smoothness;
+        currentY += (targetY - currentY) * smoothness;
+
+        // Record the smoothed position every frame. Even (per-frame) spacing
+        // removes the snap/jitter caused by the old distance threshold, and
+        // the newest point is always exactly the cursor position — so the
+        // tail stays glued to the cursor dot.
+        if (started) {
+          trail.push({ x: currentX, y: currentY });
+          if (trail.length > maxTrail) trail.shift();
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw the trail as one smooth path. Each raw sample can be far apart
+        // when the pointer moves fast, so we subdivide the quadratic curves
+        // into many short sub-points. Densifying like this keeps the drawn
+        // segments (and their glow) overlapping into a single continuous
+        // stroke instead of breaking up into a row of separate dots.
+        if (trail.length >= 3) {
+          const n = trail.length;
+          const SUB = 8; // sub-points per segment
+
+          // Build a densified centreline through the sample midpoints, each
+          // point carrying its progress (0 = tail tip, 1 = cursor).
+          const pts = [];
+          for (let i = 1; i < n - 1; i++) {
+            const prev = trail[i - 1];
+            const curr = trail[i];
+            const next = trail[i + 1];
+            const m1 = { x: (prev.x + curr.x) / 2, y: (prev.y + curr.y) / 2 };
+            const m2 = { x: (curr.x + next.x) / 2, y: (curr.y + next.y) / 2 };
+            for (let s = 0; s < SUB; s++) {
+              const t = s / SUB;
+              const it = 1 - t;
+              pts.push({
+                x: it * it * m1.x + 2 * it * t * curr.x + t * t * m2.x,
+                y: it * it * m1.y + 2 * it * t * curr.y + t * t * m2.y,
+                prog: (i - 1 + t) / (n - 2),
+              });
+            }
+          }
+          pts.push({ x: currentX, y: currentY, prog: 1 });
+
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          for (let j = 0; j < pts.length - 1; j++) {
+            const p1 = pts[j];
+            const p2 = pts[j + 1];
+            const progress = p1.prog;
+            // Width: fat/soft at the tail tip, tapering to a fine point at the
+            // cursor. Brightness runs the other way — brightest at the cursor
+            // end so it reads as a sharp, bright point.
+            const lineWidth = 0.6 + Math.pow(1 - progress, 1.8) * 5;
+            const alpha = 0.2 + Math.pow(progress, 1.1) * 0.75;
+            // Blur fades out toward the cursor so that end stays crisp while
+            // the tail keeps its soft glow.
+            const blur = 2 + 18 * (1 - progress);
+
+            // White glow line
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
+            ctx.shadowBlur = blur;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+
+            // Soft outer glow — only on the tail, faded out near the cursor.
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.1)';
+            ctx.shadowBlur = blur * 2;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.2})`;
+            ctx.lineWidth = lineWidth + 5 * (1 - progress);
+            ctx.stroke();
+          }
+        }
+
+        // Cursor dot
+        ctx.shadowBlur = 0;
+        // Outer glow
+        const gradient = ctx.createRadialGradient(currentX, currentY, 0, currentX, currentY, 30);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+        gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 30, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Core white dot
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+        ctx.shadowBlur = 25;
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fill();
+
+        // Bright center
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 1, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
+
+  </script>
+</body>
+
+</html>

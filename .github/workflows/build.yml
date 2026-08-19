@@ -1,0 +1,40 @@
+name: Build static site
+
+# Regenerates index.html from data.json + index.template.html whenever the
+# source content changes, and commits the result back to main. Pages then
+# serves the pre-rendered (crawlable) HTML.
+on:
+  push:
+    branches: [main]
+    paths:
+      - data.json
+      - index.template.html
+      - build.js
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build index.html
+        run: node build.js
+
+      - name: Commit regenerated index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain index.html)" ]; then
+            git add index.html
+            git commit -m "chore: rebuild index.html from data.json [skip ci]"
+            git push
+          else
+            echo "index.html already up to date."
+          fi
